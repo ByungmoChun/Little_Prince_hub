@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어린왕자 허브 — 회의록 · 문서</title>
+<style>
+:root{--bg:#0F1626;--panel:#151F36;--panel2:#111A2E;--line:#26314D;--ink:#E8E6DD;--muted:#8A93A8;--gold:#E9B84C;
+--teal:#35C79A;--teal-d:#1E8A69;--violet:#8B7FE8;--violet-d:#5D51C4;--violet-l:#3A3564;
+--rose:#E07A9E;--rose-d:#B04A70;--blue:#5B9FE3;--blue-d:#2F6DB4;--blue-l:#274668;--red:#E15B5B}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif;line-height:1.6}
+nav{position:sticky;top:0;z-index:50;background:rgba(15,22,38,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 24px}
+nav .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:4px;height:54px;overflow-x:auto}
+nav .logo{font-family:"Noto Serif KR",serif;font-weight:600;font-size:15px;color:var(--gold);white-space:nowrap;margin-right:14px}
+nav a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:6px;white-space:nowrap}
+nav a:hover{color:var(--ink);background:var(--panel)}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+h1{font-family:"Noto Serif KR",serif;font-weight:600;font-size:30px}
+.sub{color:var(--muted);font-size:13.5px;margin-top:8px}
+section{margin-top:56px}
+h2{font-size:20px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:5px;height:20px;background:var(--gold);border-radius:2px}
+.h2sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.kcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.kcard .k{font-size:11.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.kcard .v{font-size:17px;font-weight:600}
+.kcard .v small{font-size:12px;color:var(--muted);font-weight:400}
+.kcard.warn{border-left:3px solid var(--red)}
+.kcard.goldb{border-left:3px solid var(--gold)}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.04em}
+.b-risk{background:rgba(225,91,91,.15);color:var(--red)}
+.b-run{background:rgba(91,159,227,.15);color:var(--blue)}
+.b-wait{background:rgba(138,147,168,.16);color:var(--muted)}
+.b-done{background:rgba(53,199,154,.15);color:var(--teal)}
+.b-gate{background:rgba(233,184,76,.15);color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:12px;white-space:nowrap}
+td.nw{white-space:nowrap}
+tr:hover td{background:rgba(255,255,255,.015)}
+.j-impl{color:var(--teal);font-weight:600}.j-spec{color:var(--blue);font-weight:600}
+.j-none{color:var(--red);font-weight:600}.j-chk{color:var(--gold);font-weight:600}.j-uni{color:var(--violet);font-weight:600}
+/* 간트 */
+.gantt{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 22px 14px;margin-top:12px}
+.months{position:relative;height:16px;margin-left:126px;font-size:11px;color:var(--muted)}
+.months span{position:absolute}
+.chart{position:relative}
+.grid{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.grid i{position:absolute;top:0;bottom:0;border-left:1px solid var(--line)}
+.row{position:relative;height:30px;margin:5px 0}
+.row .lb{position:absolute;left:0;width:118px;font-size:11.5px;color:var(--muted);line-height:30px;white-space:nowrap}
+.row .lb.crit{color:var(--teal)}
+.row .tr{position:absolute;left:126px;right:0;top:4px;height:22px}
+.bar{position:absolute;height:22px;border-radius:5px;font-size:10.5px;line-height:22px;padding:0 7px;white-space:nowrap;overflow:hidden;color:#0D1322;font-weight:500}
+.bar.dk{color:#F0EFFA}
+.gates{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.gate{position:absolute;top:-4px;bottom:0;border-left:1px dashed rgba(233,184,76,.5)}
+.gate::before{content:"★";position:absolute;top:-13px;left:-5px;font-size:8px;color:var(--gold)}
+.legend{margin:10px 0 0 126px;font-size:11px;color:var(--muted)}
+.legend b{color:var(--gold);font-weight:500}
+/* 탭 */
+.tabs{display:flex;gap:6px;margin:14px 0 0;flex-wrap:wrap}
+.tabs button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:8px 8px 0 0;font-size:13px;cursor:pointer;font-family:inherit}
+.tabs button.on{background:var(--panel2);color:var(--gold);border-bottom-color:var(--panel2);font-weight:600}
+.tabpane{display:none;background:var(--panel2);border:1px solid var(--line);border-radius:0 10px 10px 10px;padding:6px 18px 16px}
+.tabpane.on{display:block}
+/* 이슈 */
+.issues{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.icat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.icat h3{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--gold)}
+.iss{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.iss:last-child{border-bottom:none}
+.iss .t{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.iss .t b{font-weight:600}
+.iss .d{color:var(--muted);font-size:12.5px;margin-top:2px}
+.iss .meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+.lib a{color:var(--blue);text-decoration:none}
+.lib a:hover{text-decoration:underline}
+.lib td small{color:var(--muted)}
+.log li{list-style:none;font-size:13px;padding:6px 0 6px 18px;position:relative;border-bottom:1px dashed var(--line)}
+.log li::before{content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.log li span{color:var(--muted)}
+.note{margin-top:10px;padding:12px 16px;background:rgba(233,184,76,.06);border:1px dashed rgba(233,184,76,.35);border-radius:8px;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--gold)}
+.org{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 20px 18px;margin:12px 0 20px;text-align:center}
+.org-top{display:inline-block;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:9px 30px;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.org-top b{display:block;color:var(--gold);font-size:15px;margin-top:2px;letter-spacing:0}
+.org-stem{width:1px;height:16px;background:var(--line);margin:0 auto}
+.org-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;padding-top:16px}
+.org-row::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;border-top:1px solid var(--line)}
+.org-box{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--muted);border-radius:10px;padding:12px 8px;font-size:13.5px;font-weight:600;position:relative}
+.org-box::before{content:"";position:absolute;top:-16px;left:50%;width:1px;height:16px;background:var(--line)}
+.org-box small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin:3px 0 7px}
+.org-box b{font-size:13px;color:var(--ink)}
+.org-box.crit{border-top-color:var(--teal)}.org-box.eng{border-top-color:var(--violet)}.org-box.des{border-top-color:var(--rose)}.org-box.web{border-top-color:var(--blue)}
+.org-cap{font-size:11.5px;color:var(--muted);margin-top:14px}
+.org-cap b{color:var(--gold)}
+@media(max-width:900px){.issues{grid-template-columns:1fr}.org-row{grid-template-columns:1fr 1fr}.org-row::before{left:25%;right:25%}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <span class="logo">🌙 어린왕자 허브</span>
+  <a href="./index.html">대시보드 · 일정</a>
+  <a href="./plan.html">기획</a>
+  <a href="./scope.html">개발 범위 · 기술 GAP</a>
+  <a href="./issues.html">이슈 보드 · 결정 큐</a>
+  <a href="./docs.html" style="color:var(--gold);background:var(--panel)">회의록 · 문서</a>
+</div></nav>
+
+<div class="wrap">
+
+<div class="eyebrow">SUPERSTORY · PLAYTOON · LE PETIT PRINCE — PROJECT HUB</div>
+<h1>회의록 · 문서</h1>
+<p class="sub">어린왕자 프로젝트 허브 · v0.4 기준 (2026. 8. 5) &nbsp;|&nbsp; 소유: PD &nbsp;|&nbsp; 엑셀(v0.2 xlsx)은 산정·판정 기입용 워킹 파일로 병행</p>
+
+<section id="library">
+<h2>회의록 · 문서 라이브러리</h2>
+<p class="h2sub">원본은 구글 드라이브·독스 연동(새 탭) — 워킹 파일(xlsx·IA 등)은 허브와 같은 폴더에 두면 상대 링크로 열림</p>
+<div class="lib">
+<table>
+<tr><th style="width:130px">분류</th><th style="width:360px">문서</th><th>비고</th></tr>
+<tr><td rowspan="4">기획서</td><td><a href="https://drive.google.com/file/d/12rSW1rIYxKZOLVzaHaCQ-qQb7-5irfhm/view?usp=drive_link" target="_blank">어린왕자_전체_기획_S0526.pdf</a></td><td><b>콘텐츠 SSOT</b> — 테마 5·27챕터·120분·인터랙티브 10종·전체 스토리보드</td></tr>
+<tr><td><a href="https://drive.google.com/file/d/1P1xp0pa9ijCiJxb_dAxsMhY4t8oj19qr/view?usp=drive_link" target="_blank">플레이툰_어린왕자_기획_260407_01.pdf</a></td><td>유니티 샘플 기획 — 반분할 이동·배회의 동작 사양서 (본편 재구현 참조)</td></tr>
+<tr><td><a href="https://drive.google.com/file/d/1iDyykSwYwB2KIdw8Y_Z4MBJGOoWR5Hp7/view?usp=drive_link" target="_blank">플레이툰_어린왕자_-_아트_변경_기획안_01.pdf</a></td><td>삼면도·배경 6종·Theme1 콘티 — 아트 방향 원전</td></tr>
+<tr><td><a href="https://docs.google.com/document/d/1CL2oFbjl2dUX_SwQWglvO88eTc_T009D/edit?usp=drive_link&ouid=114718295898704296247&rtpof=true&sd=true" target="_blank">어린왕자_통합_마스터기획서_v0.2.docx</a></td><td>사업 스코프·Why Playtoon·수익화 — v1.0 확정 7/24</td></tr>
+<tr><td rowspan="2">검토안 · BM</td><td><a href="https://drive.google.com/file/d/1WOXHM4BlKsBSNuOkCZegW_J9BIyuK0Wt/view?usp=drive_link" target="_blank">260703_어린왕자_셀럽_검토의_안.pdf</a></td><td>보이스 캡슐·B-612 키링·PWA 4.5% — 과금 모델 원전. LP하우스 지표(MD 78%·ARPU 21,637원)</td></tr>
+<tr><td><a href="https://drive.google.com/file/d/1bXYLf0xto1iC912WzF4ERcjdj5GCqkuk/view?usp=drive_link" target="_blank">어린왕자_샘플_시연_가이드.mp4</a></td><td>유니티 샘플 동작 규칙 (자동 움직임·나레이션 종료 복귀)</td></tr>
+<tr><td rowspan="2">회의록</td><td><a href="https://docs.google.com/document/d/1MEUk8Catef_BB2nBnQG9IzKMSohJQnzXxnrZuhqRzuM/edit?usp=drive_link" target="_blank">디자인팀·플레이북 공동회의 (8/6)</a></td><td>신데렐라 유니티 구조 공유 + 엔진 요건 도출 — <b>착수 3조건</b>(키감 통일·다중 키 뷰·버그 안정성, 미충족 시 기간 약속 불가) · 선행 과제 = 만두 데모 키감 재현 검증 · 타임라인 도입+공통 블록화 · V램 기준선(배경 2048/소품 512) · 내레이션 논스톱, A급 10개 챕터 경계 · 분기 미사용, 낭독 교체 판매·도슨트·자기 행성 → T8~T10·D12·D13 반영</td></tr>
+<tr><td><a href="https://docs.google.com/document/d/1s3u2_YNs1zs3Qqe6r3-oYkRlSlEvZ-owVVOYVHiqlGY/edit?usp=drive_link" target="_blank">어린왕자 회의 요약 (7/15)</a></td><td>7/15 본회의 — 배우 3인·라이선스 4사·BTS/블랙핑크·웹 우선·MG 회피</td></tr>
+<tr><td rowspan="6">작업 문서</td><td><a href="./workbook_v0.2.xlsx">어린왕자_일정_개발범위_v0.2.xlsx</a></td><td><b>워킹 파일</b> — 산정 기입(북디자인)·GAP 판정 기입(플레이북) 전용</td></tr>
+<tr><td><a href="./ia.html">어린왕자_IA_스켈레톤_v0.3.html</a></td><td>사이트맵·URL·상태 매트릭스·플로우 5·기술 요구 — 웹팀 8/18 착수 입력물. v0.3(8/5): 브랜드 홈·보이스 플레이북 단권 모델·내 별 2모드·셀럽 별 방문 (구버전 보관)</td></tr>
+<tr><td><a href="https://little-prince-payment.vercel.app/" target="_blank">결제(PG) 전략 — little-prince-payment</a></td><td><b>결제 전략 SSOT (7/21)</b> — 2026 "국내 PG+Paddle" 2채널 디지털 온리 → 2027 빅 스위치(Stripe 이관·EU 직접 등록·굿즈), 크레딧(별) 지갑 수수료 방어선. P1·P4·P8·P9·P-03(가격 정책)의 근거 문서</td></tr>
+<tr><td>어린왕자_일정_확정안.html</td><td>구 버전 (v0.1 일정) — 로컬 보관, 비배포</td></tr>
+<tr><td><a href="https://docs.google.com/spreadsheets/d/1WN0qYgsJXJ3yqGt0JoqtV5YNTLDeilAi06upjGvJkX4/edit?usp=drive_link" target="_blank">어린왕자_러프_일정안.xlsx</a></td><td>플레이북디자인팀 팀장 1차 러프안 — v0.2 일정의 근거 (구글 시트)</td></tr>
+<tr><td><a href="./report.html">어린왕자_일정_보고용_v0.4 (report.html)</a></td><td>일정 단독 보고 페이지 — 결론·구성도(직함 없음)·간트·게이트·리스크 대응</td></tr>
+<tr><td rowspan="2">외부 링크</td><td><a href="https://playbook-master-hub.vercel.app/" target="_blank">playbook-master-hub.vercel.app</a></td><td>플레이북 통합 기획서 V0.5.2 — 트리거 16종·GAP 대조 기준</td></tr>
+<tr><td><a href="./forced_alignment_report.html" target="_blank">forced_alignment_report.html</a></td><td>음성 강제 정렬 도구 보고서 — 8월 중순 검증 대상(P-07). 허브와 같은 폴더 배치 기준 상대 링크</td></tr>
+<tr><td rowspan="4">PG사 (뉴플레이)</td><td><a href="https://docs.google.com/document/d/172h77ZcKw1svbGZmcn2TDjmit1LumejSs1QEnO254Tk/edit?usp=drive_link" target="_blank">뉴플레이·네이버클라우드 미팅 회의록 (8/4)</a></td><td>한국 기반 MoR(엑솔라 출신) — 65개국·110+ 결제수단, 연동 4~8시간, 수수료 1.9~4.9% 슬라이딩. 초기 파트너 혜택(8~9월 초 계약 시 중간 요율+UA 지원 or 1,000만 원). PSP→MoR 양쪽 커버 확인, 어린왕자 음성·재화(별) 결제 승인 기취득. 중국 현지 결제 테스트 완료(ICP 비안은 별개). 회신 10~11월 — 검토 포인트: Paddle 대비 실효 수수료·65개국 실체</td></tr>
+<tr><td><a href="https://drive.google.com/file/d/1vMm49QKXQHrUFhT70HWCfmBZTSeMSYD4/view?usp=drive_link" target="_blank">뉴플레이 솔루션 소개서</a></td><td>소개서·수수료표 — 8/5 수령분</td></tr>
+<tr><td><a href="https://developers.newplay.store/" target="_blank">뉴플레이 개발자 문서</a></td><td>API 연동 가이드 — 웹팀 결제 백엔드 검토용</td></tr>
+<tr><td><a href="https://newplay.store/dashboard/signIn" target="_blank">뉴플레이 대시보드</a></td><td>정산·거래 관리 콘솔</td></tr>
+</table>
+</div>
+</section>
+
+<div style="margin-top:56px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between">
+  <span>슈퍼스토리 스토리테크본부 · 플레이툰 어린왕자 프로젝트 허브</span>
+  <span>관리: PD · 갱신 이력은 보관 로그에 기록</span>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.t).classList.add('on');
+  });
+});
+</script>
+</body>
+</html>

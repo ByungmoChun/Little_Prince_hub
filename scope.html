@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어린왕자 허브 — 개발 범위 · 기술 GAP</title>
+<style>
+:root{--bg:#0F1626;--panel:#151F36;--panel2:#111A2E;--line:#26314D;--ink:#E8E6DD;--muted:#8A93A8;--gold:#E9B84C;
+--teal:#35C79A;--teal-d:#1E8A69;--violet:#8B7FE8;--violet-d:#5D51C4;--violet-l:#3A3564;
+--rose:#E07A9E;--rose-d:#B04A70;--blue:#5B9FE3;--blue-d:#2F6DB4;--blue-l:#274668;--red:#E15B5B}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif;line-height:1.6}
+nav{position:sticky;top:0;z-index:50;background:rgba(15,22,38,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 24px}
+nav .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:4px;height:54px;overflow-x:auto}
+nav .logo{font-family:"Noto Serif KR",serif;font-weight:600;font-size:15px;color:var(--gold);white-space:nowrap;margin-right:14px}
+nav a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:6px;white-space:nowrap}
+nav a:hover{color:var(--ink);background:var(--panel)}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+h1{font-family:"Noto Serif KR",serif;font-weight:600;font-size:30px}
+.sub{color:var(--muted);font-size:13.5px;margin-top:8px}
+section{margin-top:56px}
+h2{font-size:20px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:5px;height:20px;background:var(--gold);border-radius:2px}
+.h2sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.kcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.kcard .k{font-size:11.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.kcard .v{font-size:17px;font-weight:600}
+.kcard .v small{font-size:12px;color:var(--muted);font-weight:400}
+.kcard.warn{border-left:3px solid var(--red)}
+.kcard.goldb{border-left:3px solid var(--gold)}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.04em}
+.b-risk{background:rgba(225,91,91,.15);color:var(--red)}
+.b-run{background:rgba(91,159,227,.15);color:var(--blue)}
+.b-wait{background:rgba(138,147,168,.16);color:var(--muted)}
+.b-done{background:rgba(53,199,154,.15);color:var(--teal)}
+.b-gate{background:rgba(233,184,76,.15);color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:12px;white-space:nowrap}
+td.nw{white-space:nowrap}
+tr:hover td{background:rgba(255,255,255,.015)}
+.j-impl{color:var(--teal);font-weight:600}.j-spec{color:var(--blue);font-weight:600}
+.j-none{color:var(--red);font-weight:600}.j-chk{color:var(--gold);font-weight:600}.j-uni{color:var(--violet);font-weight:600}
+/* 간트 */
+.gantt{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 22px 14px;margin-top:12px}
+.months{position:relative;height:16px;margin-left:126px;font-size:11px;color:var(--muted)}
+.months span{position:absolute}
+.chart{position:relative}
+.grid{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.grid i{position:absolute;top:0;bottom:0;border-left:1px solid var(--line)}
+.row{position:relative;height:30px;margin:5px 0}
+.row .lb{position:absolute;left:0;width:118px;font-size:11.5px;color:var(--muted);line-height:30px;white-space:nowrap}
+.row .lb.crit{color:var(--teal)}
+.row .tr{position:absolute;left:126px;right:0;top:4px;height:22px}
+.bar{position:absolute;height:22px;border-radius:5px;font-size:10.5px;line-height:22px;padding:0 7px;white-space:nowrap;overflow:hidden;color:#0D1322;font-weight:500}
+.bar.dk{color:#F0EFFA}
+.gates{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.gate{position:absolute;top:-4px;bottom:0;border-left:1px dashed rgba(233,184,76,.5)}
+.gate::before{content:"★";position:absolute;top:-13px;left:-5px;font-size:8px;color:var(--gold)}
+.legend{margin:10px 0 0 126px;font-size:11px;color:var(--muted)}
+.legend b{color:var(--gold);font-weight:500}
+/* 탭 */
+.tabs{display:flex;gap:6px;margin:14px 0 0;flex-wrap:wrap}
+.tabs button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:8px 8px 0 0;font-size:13px;cursor:pointer;font-family:inherit}
+.tabs button.on{background:var(--panel2);color:var(--gold);border-bottom-color:var(--panel2);font-weight:600}
+.tabpane{display:none;background:var(--panel2);border:1px solid var(--line);border-radius:0 10px 10px 10px;padding:6px 18px 16px}
+.tabpane.on{display:block}
+/* 이슈 */
+.issues{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.icat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.icat h3{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--gold)}
+.iss{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.iss:last-child{border-bottom:none}
+.iss .t{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.iss .t b{font-weight:600}
+.iss .d{color:var(--muted);font-size:12.5px;margin-top:2px}
+.iss .meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+.lib a{color:var(--blue);text-decoration:none}
+.lib a:hover{text-decoration:underline}
+.lib td small{color:var(--muted)}
+.log li{list-style:none;font-size:13px;padding:6px 0 6px 18px;position:relative;border-bottom:1px dashed var(--line)}
+.log li::before{content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.log li span{color:var(--muted)}
+.note{margin-top:10px;padding:12px 16px;background:rgba(233,184,76,.06);border:1px dashed rgba(233,184,76,.35);border-radius:8px;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--gold)}
+.org{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 20px 18px;margin:12px 0 20px;text-align:center}
+.org-top{display:inline-block;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:9px 30px;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.org-top b{display:block;color:var(--gold);font-size:15px;margin-top:2px;letter-spacing:0}
+.org-stem{width:1px;height:16px;background:var(--line);margin:0 auto}
+.org-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;padding-top:16px}
+.org-row::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;border-top:1px solid var(--line)}
+.org-box{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--muted);border-radius:10px;padding:12px 8px;font-size:13.5px;font-weight:600;position:relative}
+.org-box::before{content:"";position:absolute;top:-16px;left:50%;width:1px;height:16px;background:var(--line)}
+.org-box small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin:3px 0 7px}
+.org-box b{font-size:13px;color:var(--ink)}
+.org-box.crit{border-top-color:var(--teal)}.org-box.eng{border-top-color:var(--violet)}.org-box.des{border-top-color:var(--rose)}.org-box.web{border-top-color:var(--blue)}
+.org-cap{font-size:11.5px;color:var(--muted);margin-top:14px}
+.org-cap b{color:var(--gold)}
+@media(max-width:900px){.issues{grid-template-columns:1fr}.org-row{grid-template-columns:1fr 1fr}.org-row::before{left:25%;right:25%}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <span class="logo">🌙 어린왕자 허브</span>
+  <a href="./index.html">대시보드 · 일정</a>
+  <a href="./plan.html">기획</a>
+  <a href="./scope.html" style="color:var(--gold);background:var(--panel)">개발 범위 · 기술 GAP</a>
+  <a href="./issues.html">이슈 보드 · 결정 큐</a>
+  <a href="./docs.html">회의록 · 문서</a>
+</div></nav>
+
+<div class="wrap">
+
+<div class="eyebrow">SUPERSTORY · PLAYTOON · LE PETIT PRINCE — PROJECT HUB</div>
+<h1>개발 범위 · 기술 GAP</h1>
+<p class="sub">어린왕자 프로젝트 허브 · v0.4 기준 (2026. 8. 5) &nbsp;|&nbsp; 소유: PD &nbsp;|&nbsp; 엑셀(v0.2 xlsx)은 산정·판정 기입용 워킹 파일로 병행</p>
+
+<section id="scope">
+<h2>팀별 개발 범위</h2>
+<p class="h2sub">상세·기입용은 엑셀 v0.2 (북디자인 "산정 포함" 열 · 플레이북 "판정" 열) — 여기는 열람용 요약</p>
+<div class="tabs">
+  <button class="on" data-t="t-plan">기획 (8)</button>
+  <button data-t="t-book">플레이북디자인팀 ★ (8)</button>
+  <button data-t="t-pb">플레이북엔진팀 (11)</button>
+  <button data-t="t-fe">웹 Front (6)</button>
+  <button data-t="t-be">웹 Back (8)</button>
+</div>
+
+<div class="tabpane on" id="t-plan">
+<table>
+<tr><th style="width:230px">항목</th><th style="width:110px">기한</th><th>내용</th></tr>
+<tr><td>통합 마스터 기획 v1.0</td><td class="nw">7/24</td><td>스코프·정당성·수익화 레이어 — 전 문서 SSOT</td></tr>
+<tr><td>테마 스코프 검증</td><td class="nw">8/3</td><td>S0526으로 씬 브레이크다운 기확정 — 리소스 규모 검증·보이스 캡슐 삽입 지점·문장 100선 테마 매핑</td></tr>
+<tr><td>인터랙티브 10종 파라미터 설계 v0.1</td><td class="nw">8/14</td><td>조합 매핑(3^5→성향 3종)·연타 임계·게이지 수치·별자리 정답 쌍(씬당 10 이내)</td></tr>
+<tr><td>별 생성 규칙 설계 v0.1</td><td class="nw">8/14</td><td>선택·분기·인터랙티브 결과 → 별 속성(형태·색·빛) 매핑 — "같은 문장, 다른 별". 저장 스키마는 L3 계정 변수 기반, 웹팀·플레이북엔진팀 공동 입력물</td></tr>
+<tr><td>IA · ScreenSpec</td><td class="nw">7/17 · 7/31</td><td>IA 스켈레톤(웹팀) → 랜딩·서재·상점 ScreenSpec v0.1(웹 디자이너)</td></tr>
+<tr><td>상품 · 가격 정책</td><td class="nw">8/7 · 8/14</td><td>듀얼 오디오(기본: 성우+AI 4개국어 / 프리미엄: 셀럽 진성 5~15초×100선). 테마 패스·보이스 패스 가격 + 테넌트 → 컬렉션 구조</td></tr>
+<tr><td>셀럽 · 재단 · 파트너 협의</td><td class="nw">상시</td><td>블랙핑크 선행 트랙, 수익 셰어 시뮬레이션, 재단 격주 누적 승인, PG 계약</td></tr>
+<tr><td>게이트 · 리스크 운영</td><td class="nw">8/14~</td><td>게이트 관리, 슬랙 결정 큐 48h, GAP 판정 주관(8/21→8/28), 정렬 도구 검증 주관</td></tr>
+</table>
+</div>
+
+<div class="tabpane" id="t-book">
+<table>
+<tr><th style="width:230px">항목</th><th style="width:130px">구간</th><th>내용</th></tr>
+<tr><td>아트 스타일 가이드</td><td class="nw">~7/31 선행</td><td>수채화→밀도 상향 기법·컬러 스크립트 — 7/31 재단 발송 = 아트 양산의 단일 게이트</td></tr>
+<tr><td>캐릭터 아트</td><td class="nw">Alpha</td><td>컨셉 6종(왕자·조종사·장미·여우 2종·뱀) + 테마 3 어른 6인(왕·허영꾼·술꾼·사업가·점등인·지리학자) 삼면도·표정·리깅 소스</td></tr>
+<tr><td>배경 · 오브젝트 · 이펙트</td><td class="nw">Alpha</td><td>배경 4계열+파생(원시림·소행성·행성 6·다락방·우물). 인터랙티브 에셋: 양 파츠 15종, 바오밥·유리덮개, 금고·별, 장미 정원(타일 기법), 별자리 4종. <b>원화→레이어 분절은 AI 파이프라인 처리(4주 압축의 전제)</b></td></tr>
+<tr><td>연출 제작</td><td class="nw">Alpha~Beta</td><td>콘티 신규 작성 아님 — S0526 스토리보드가 확정 연출안. 디졸브 18회·연극 무대·낙하 등 컷 제작</td></tr>
+<tr><td>캐릭터 애니메이션 (Spine)</td><td class="nw">Alpha~Beta</td><td>이동·리액션·표정, 조합 양 3종, 소환 인물 6종. 머플러 2차 물리 — 경로 A 성립 시 리깅 파라미터로 흡수</td></tr>
+<tr><td>에디터 조립</td><td class="nw">프로토→본조립</td><td>Alpha: 테마 1~2 프로토 = 파일럿(GAP 신규 실전 검증). Beta: 테마 단위 완결 조립</td></tr>
+<tr><td>사운드 디렉션</td><td class="nw">Beta</td><td>BGM·SFX 발주 검수, 나레이션 타이밍, 보이스 캡슐 삽입 협업 — I4-1·I5-2는 사운드 비중 높음</td></tr>
+<tr><td>재단 승인 대응</td><td class="nw">격주 상시</td><td>테마 단위 격주 공유 — 누적 승인. 산정에 피드백 시간 포함 여부 7/20 확인</td></tr>
+</table>
+</div>
+
+<div class="tabpane" id="t-pb">
+<table>
+<tr><th style="width:230px">작업 묶음</th><th style="width:130px">성격</th><th>내용</th></tr>
+<tr><td>트리거 6종 구현</td><td><span class="j-spec">스펙 명세</span></td><td>onDropToTarget(1순위·수요 4종)·onLongPress·onConnect·onAnimationEnd·onVariableChange·onDragProgress — 구현 순서 협상만</td></tr>
+<tr><td>나레이션 동기화 파이프라인</td><td><span class="j-spec">전면 수요</span></td><td>6.3 + 강제 정렬 도구 — 120분 × 4개국어. 오디오 종료 이벤트 포함 확인. 8월 초 합동 검증</td></tr>
+<tr><td>상태 패턴 검증</td><td><span class="j-spec">조합 검증</span></td><td>조합 완성(L2+Condition)·연타 QTE(onClick+onTimerEnd)·게이지(bindTo+L3) — 신규 아닌 조립 검증</td></tr>
+<tr><td>오디오 내비게이션</td><td><span class="j-none">신규 (난도 상위)</span></td><td>거리→볼륨·템포 연속 매핑 (I4-1). AudioFX+bindTo 재료</td></tr>
+<tr><td>마스크 전환 일반화</td><td><span class="j-none">신규</span></td><td>마스크 1종+형태 파라미터로 디졸브 18회 커버. 렌즈 투시(#17)와 묶음. ImageFX 확장 실측</td></tr>
+<tr><td>카메라 추적 · 셰이크</td><td><span class="j-none">신규 or 회피</span></td><td>키프레임 프리베이크 회피 가능성 우선 판정</td></tr>
+<tr><td>무작위 타이머</td><td><span class="j-none">신규 (경량)</span></td><td>onTimerEnd 랜덤 간격·확률 파라미터</td></tr>
+<tr><td>대량 오브젝트 성능 실측</td><td><span class="j-chk">검증 1회</span></td><td>수천 유닛 렌더 측정 — 타일+정답만 유닛화 권고안</td></tr>
+<tr><td>재생 구동 어댑터 (구 "seek 입력 어댑터")</td><td><span class="j-impl">확정 작업</span></td><td>evaluate(t)의 t 공급원을 스크롤에서 <b>내부 재생 시계(트리거 → 정방향 자동 재생)</b>로 분리하는 배관 — 스크럽 기능 아님. 런타임에 되감기 없음(물리 경로의존성 결론과 정합). <b>T9 타임라인 = 이 내부 시계의 공식 구현체</b> — 한 축으로 진행. 시간 점프 리셋 규칙은 에디터 저작 스크럽·GoToScene에만 적용</td></tr>
+<tr><td>유니티 샘플 참조 재구현 판정</td><td><span class="j-uni">유니티 참조</span></td><td>반분할 이동·행성 회전, 자동 배회 — C# 이식 불가. ① 엔진 기능화 ② 커스텀 씬 택1 (8/28)</td></tr>
+<tr><td>2차 물리 경로 판정</td><td><span class="j-chk">확인</span></td><td>spine-ts 4.2+ 확인 → 경로 A(공수 ~0)/B(벌렛 1~2주) + seek 밖 레이어·점프 리셋 3점 합의</td></tr>
+</table>
+</div>
+
+<div class="tabpane" id="t-fe">
+<table>
+<tr><th style="width:230px">항목</th><th style="width:90px">분류</th><th>내용</th></tr>
+<tr><td>브랜드 랜딩 · PWA 셸</td><td><span class="j-none">신규</span></td><td>"모자를 당겨보세요" 플레이어블 히어로 · PWA 매니페스트·오프라인 셸 — 입력물: IA v0.1</td></tr>
+<tr><td>별자리 서재 UI</td><td><span class="j-none">신규</span></td><td>별 점등·별자리 연결·진행도·미리듣기·셀럽 하늘·공유 이미지 — 콘텐츠 I5-2와 동일 문법(onConnect) 시너지. <b>하늘 배치 원칙: 알려진 실제 별자리 = 셀럽 별(운영 콘텐츠), 배경의 무수한 별 = 회원 별</b> — 하늘 자체가 커뮤니티 지도</td></tr>
+<tr><td>상점 · 마이페이지</td><td><span class="j-none">신규</span></td><td>테마/보이스 패스 구매 UI, PG 위젯, 소장 목록 — 입력물: 가격 v0.1(8/7)</td></tr>
+<tr><td>뷰어 임베드 (프론트)</td><td><span class="j-impl">이식</span></td><td>플랫폼웹 뷰어 이식 + 스킨. 캡슐 재생 UI: 명대사 터치 → 턴테이블/셀럽 테마 전환(260703 확정 연출)</td></tr>
+<tr><td>다국어 UI</td><td><span class="j-none">신규</span></td><td>텍스트 5로케일: ko·en·ja·<b>zh-Hans(간체)·zh-Hant(번체)</b> — 음성 나레이션은 4벌(중국어 보통화 1벌 공용). 지역별 로그인·결제 노출 분기</td></tr>
+<tr><td>별 상세 (줌인) · 데코</td><td><span class="j-none">신규 — 2단계</span></td><td>v1.0: 별 줌인 + 선택 결과 자동 개인화 배치(스키마 선설계 필수). v1.1: 데코 에디터(수동 배치)+아이템 상점 — 포인트 사용처, D10 결정</td></tr>
+</table>
+</div>
+
+<div class="tabpane" id="t-be">
+<table>
+<tr><th style="width:230px">항목</th><th style="width:90px">분류</th><th>내용</th></tr>
+<tr><td>계정 · 세션</td><td><span class="j-impl">이식</span></td><td>소셜 4종 이식 — 테넌트 결정(8/7) 반영</td></tr>
+<tr><td>소유권 · 접근 제어</td><td><span class="j-impl">이식+개조</span></td><td>코인게이트 판정 코어 이식, 테마+문장(100+ SKU) 이중 판정 확장·캐싱</td></tr>
+<tr><td>결제 백엔드 (2채널)</td><td><span class="j-none">신규</span></td><td>2026 = 국내 PG + Paddle(MoR) — Paddle 체크아웃 연동·웹훅·크레딧(별) 지갑 충전/차감 원장. Stripe는 2027 빅 스위치 시 이관(월매출 $100~200k 트리거)</td></tr>
+<tr><td>상품 · 카탈로그</td><td><span class="j-none">신규</span></td><td>SKU=셀럽×문장×언어, 4계층(낱개/묶음/패스/컴플리트), 서재 진행도 API</td></tr>
+<tr><td>콘텐츠 전송</td><td><span class="j-none">신규</span></td><td>캡슐 최고 보호 등급(서명 URL·구간 스트리밍), 나레이션 120분×4개국어, 글로벌 CDN</td></tr>
+<tr><td>지갑 — 캐시 · 포인트</td><td><span class="j-none">신규 (또는 이식)</span></td><td>충전 캐시·적립 포인트·PG 혼합 결제·거래 원장. <b>단일 가맹점 면제 트랙 확정</b> — 어린왕자 웹 전용·양도 불가 설계, 면제 조건 체크를 약관·상품 정책에 내장. 향후 통합 캐시 전환(=등록 트랙) 대비 데이터 모델 분리 + <b>국가별 캐시 가용성 플래그 선설계(v1.0 한국만 ON)</b>. 포인트 = 무상·전 지역 공통, 별자리 컴플리트 보상 연결(수집→경제 루프)</td></tr>
+<tr><td>플레이 데이터 · 별 생성</td><td><span class="j-none">신규</span></td><td>선택·분기·인터랙티브 결과(양 조합 성향, 노을 횟수 등) 이벤트 수집 → 계정 저장 → 별 생성 규칙 적용 → 개인화된 별 속성. 기반 = 플레이북 L3 계정 변수 + 서버 fallback(스펙 확정). 서재 = 소유권+플레이 데이터 합성 뷰</td></tr>
+</table>
+</div>
+</section>
+
+<section id="gap">
+<h2>기술 GAP 분석 <span class="badge b-gate">개정 3판</span></h2>
+<p class="h2sub">S0526 + 유니티 샘플(사양 확정) × 플레이북 통합 기획서 V0.5.2 실측 — 판정 확정은 8/28 게이트, 신규분 10/19 프리즈 전 완료. 판정 기입은 엑셀에서.</p>
+<table>
+<tr><th style="width:36px">#</th><th style="width:200px">요구 기술</th><th style="width:104px">판정</th><th>근거 · 확인 포인트</th></tr>
+<tr><td>1~3</td><td>페이드·탭·씬전환·사운드·타이머</td><td><span class="j-impl">RC.0 구현</span></td><td>Color/Transform·Audio 트랙, onClick·onTimerEnd, GoToScene — I3-1·I5-1은 현 에디터로 조립 가능</td></tr>
+<tr><td>4</td><td>드래그&드롭 타겟 판정</td><td><span class="j-spec">스펙 명세</span></td><td>onDropToTarget(슬롯 8·match) — 인터랙티브 4종 사용, 수요 최다, 스펙 우선 4종</td></tr>
+<tr><td>5</td><td>홀드 게이지 (물주기)</td><td><span class="j-spec">스펙 명세</span></td><td>onLongPress — 스펙 예시가 "물주기" 그대로</td></tr>
+<tr><td>6</td><td>조합 · 소지 상태</td><td><span class="j-spec">스펙 명세</span></td><td>L2 변수+Condition+State — 3^5은 성향 3종 매핑으로 단순화(기획 8/14)</td></tr>
+<tr><td>7</td><td>나레이션 동기화</td><td><span class="j-spec">스펙 명세</span></td><td>6.3+정렬 도구 — 120분 × 4개국어(AI 다언어 보이스). 자동화 실패 시 공수 4배 — 8월 초 검증</td></tr>
+<tr><td>8~10</td><td>애니 종료·오디오 종료·변수 반응</td><td><span class="j-spec">스펙 명세</span></td><td>onAnimationEnd·onVariableChange — 오디오 종료 이벤트만 명세 확인 필요</td></tr>
+<tr><td>11</td><td>연결 → 별자리 (I5-2)</td><td><span class="j-spec">스펙 명세</span></td><td>onConnect(씬당 10쌍) 정확 일치 — 웹 서재와 동일 문법</td></tr>
+<tr><td>12</td><td>연타 QTE + 제한시간 (I2-1)</td><td><span class="j-spec">스펙 조합</span></td><td>onClick 카운트+onTimerEnd — 연타 임계 파라미터만 확인</td></tr>
+<tr><td>13~14</td><td>반분할 이동·행성 회전 / 자동 배회</td><td><span class="j-uni">유니티 참조</span></td><td>유니티 샘플 = 동작 사양서, C# 이식 불가 → 웹 재구현. ① 엔진 기능화 ② 커스텀 씬 택1 (8/28) — "재사용" 표현 금지</td></tr>
+<tr><td>15</td><td>오디오 내비게이션 (I4-1)</td><td><span class="j-none">스펙 없음</span></td><td>거리→볼륨·템포 연속 매핑 — 신규 난도 상위, AudioFX+bindTo 재료</td></tr>
+<tr><td>16~17</td><td>마스크 디졸브 계열 · 렌즈 투시</td><td><span class="j-none">스펙 없음</span></td><td>디졸브 18회 — "마스크 1종+형태 파라미터" 일반화 제안, ImageFX 확장 실측</td></tr>
+<tr><td>18</td><td>카메라 추적 · 셰이크</td><td><span class="j-none">스펙 없음</span></td><td>키프레임 프리베이크 회피 가능 — 실시간 필요 여부부터</td></tr>
+<tr><td>19</td><td>무작위 트리거</td><td><span class="j-none">스펙 없음</span></td><td>경량 — TimerEnd 랜덤 파라미터 제안</td></tr>
+<tr><td>20~21</td><td>대량 렌더 · 소품 물리</td><td><span class="j-none">회피 가능</span></td><td>#20 타일+정답 유닛화(성능 실측 1회) · #21 키프레임 모사 — 플레이북디자인팀 몫</td></tr>
+<tr><td>22</td><td>2차 물리 (머플러)</td><td><span class="j-chk">확인 필요</span></td><td>S0526 명문화. 경로 A(Spine 4.2, ~0)/B(벌렛 1~2주) — spine-ts 버전 + seek 분리 + 점프 리셋 3점 합의</td></tr>
+<tr><td>23</td><td>뷰포트 세로/가로</td><td><span class="j-chk">확인 필요</span></td><td>화면 규격 연구(16:9 기준축) 정합</td></tr>
+</table>
+<div class="note"><b>협상 프레임</b> — 스펙 우선 4종 중 3종(onDropToTarget·onLongPress·onConnect)이 어린왕자 직접 수요: 어린왕자는 부담이 아니라 <b>원래 계획된 개발의 첫 실전 수요처</b>. 순수 신규는 사실상 3~4건(#15~18).</div>
+</section>
+
+<div style="margin-top:56px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between">
+  <span>슈퍼스토리 스토리테크본부 · 플레이툰 어린왕자 프로젝트 허브</span>
+  <span>관리: PD · 갱신 이력은 보관 로그에 기록</span>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.t).classList.add('on');
+  });
+});
+</script>
+</body>
+</html>

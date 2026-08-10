@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어린왕자 허브 — 기획</title>
+<style>
+:root{--bg:#0F1626;--panel:#151F36;--panel2:#111A2E;--line:#26314D;--ink:#E8E6DD;--muted:#8A93A8;--gold:#E9B84C;
+--teal:#35C79A;--teal-d:#1E8A69;--violet:#8B7FE8;--violet-d:#5D51C4;--violet-l:#3A3564;
+--rose:#E07A9E;--rose-d:#B04A70;--blue:#5B9FE3;--blue-d:#2F6DB4;--blue-l:#274668;--red:#E15B5B}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif;line-height:1.6}
+nav{position:sticky;top:0;z-index:50;background:rgba(15,22,38,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 24px}
+nav .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:4px;height:54px;overflow-x:auto}
+nav .logo{font-family:"Noto Serif KR",serif;font-weight:600;font-size:15px;color:var(--gold);white-space:nowrap;margin-right:14px}
+nav a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:6px;white-space:nowrap}
+nav a:hover{color:var(--ink);background:var(--panel)}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+h1{font-family:"Noto Serif KR",serif;font-weight:600;font-size:30px}
+.sub{color:var(--muted);font-size:13.5px;margin-top:8px}
+section{margin-top:56px}
+h2{font-size:20px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:5px;height:20px;background:var(--gold);border-radius:2px}
+.h2sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.kcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.kcard .k{font-size:11.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.kcard .v{font-size:17px;font-weight:600}
+.kcard .v small{font-size:12px;color:var(--muted);font-weight:400}
+.kcard.warn{border-left:3px solid var(--red)}
+.kcard.goldb{border-left:3px solid var(--gold)}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.04em}
+.b-risk{background:rgba(225,91,91,.15);color:var(--red)}
+.b-run{background:rgba(91,159,227,.15);color:var(--blue)}
+.b-wait{background:rgba(138,147,168,.16);color:var(--muted)}
+.b-done{background:rgba(53,199,154,.15);color:var(--teal)}
+.b-gate{background:rgba(233,184,76,.15);color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:12px;white-space:nowrap}
+td.nw{white-space:nowrap}
+tr:hover td{background:rgba(255,255,255,.015)}
+.j-impl{color:var(--teal);font-weight:600}.j-spec{color:var(--blue);font-weight:600}
+.j-none{color:var(--red);font-weight:600}.j-chk{color:var(--gold);font-weight:600}.j-uni{color:var(--violet);font-weight:600}
+/* 간트 */
+.gantt{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 22px 14px;margin-top:12px}
+.months{position:relative;height:16px;margin-left:126px;font-size:11px;color:var(--muted)}
+.months span{position:absolute}
+.chart{position:relative}
+.grid{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.grid i{position:absolute;top:0;bottom:0;border-left:1px solid var(--line)}
+.row{position:relative;height:30px;margin:5px 0}
+.row .lb{position:absolute;left:0;width:118px;font-size:11.5px;color:var(--muted);line-height:30px;white-space:nowrap}
+.row .lb.crit{color:var(--teal)}
+.row .tr{position:absolute;left:126px;right:0;top:4px;height:22px}
+.bar{position:absolute;height:22px;border-radius:5px;font-size:10.5px;line-height:22px;padding:0 7px;white-space:nowrap;overflow:hidden;color:#0D1322;font-weight:500}
+.bar.dk{color:#F0EFFA}
+.gates{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.gate{position:absolute;top:-4px;bottom:0;border-left:1px dashed rgba(233,184,76,.5)}
+.gate::before{content:"★";position:absolute;top:-13px;left:-5px;font-size:8px;color:var(--gold)}
+.legend{margin:10px 0 0 126px;font-size:11px;color:var(--muted)}
+.legend b{color:var(--gold);font-weight:500}
+/* 탭 */
+.tabs{display:flex;gap:6px;margin:14px 0 0;flex-wrap:wrap}
+.tabs button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:8px 8px 0 0;font-size:13px;cursor:pointer;font-family:inherit}
+.tabs button.on{background:var(--panel2);color:var(--gold);border-bottom-color:var(--panel2);font-weight:600}
+.tabpane{display:none;background:var(--panel2);border:1px solid var(--line);border-radius:0 10px 10px 10px;padding:6px 18px 16px}
+.tabpane.on{display:block}
+/* 이슈 */
+.issues{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.icat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.icat h3{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--gold)}
+.iss{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.iss:last-child{border-bottom:none}
+.iss .t{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.iss .t b{font-weight:600}
+.iss .d{color:var(--muted);font-size:12.5px;margin-top:2px}
+.iss .meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+.lib a{color:var(--blue);text-decoration:none}
+.lib a:hover{text-decoration:underline}
+.lib td small{color:var(--muted)}
+.log li{list-style:none;font-size:13px;padding:6px 0 6px 18px;position:relative;border-bottom:1px dashed var(--line)}
+.log li::before{content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.log li span{color:var(--muted)}
+.note{margin-top:10px;padding:12px 16px;background:rgba(233,184,76,.06);border:1px dashed rgba(233,184,76,.35);border-radius:8px;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--gold)}
+.org{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 20px 18px;margin:12px 0 20px;text-align:center}
+.org-top{display:inline-block;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:9px 30px;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.org-top b{display:block;color:var(--gold);font-size:15px;margin-top:2px;letter-spacing:0}
+.org-stem{width:1px;height:16px;background:var(--line);margin:0 auto}
+.org-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;padding-top:16px}
+.org-row::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;border-top:1px solid var(--line)}
+.org-box{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--muted);border-radius:10px;padding:12px 8px;font-size:13.5px;font-weight:600;position:relative}
+.org-box::before{content:"";position:absolute;top:-16px;left:50%;width:1px;height:16px;background:var(--line)}
+.org-box small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin:3px 0 7px}
+.org-box b{font-size:13px;color:var(--ink)}
+.org-box.crit{border-top-color:var(--teal)}.org-box.eng{border-top-color:var(--violet)}.org-box.des{border-top-color:var(--rose)}.org-box.web{border-top-color:var(--blue)}
+.org-cap{font-size:11.5px;color:var(--muted);margin-top:14px}
+.org-cap b{color:var(--gold)}
+@media(max-width:900px){.issues{grid-template-columns:1fr}.org-row{grid-template-columns:1fr 1fr}.org-row::before{left:25%;right:25%}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <span class="logo">🌙 어린왕자 허브</span>
+  <a href="./index.html">대시보드 · 일정</a>
+  <a href="./plan.html" style="color:var(--gold);background:var(--panel)">기획</a>
+  <a href="./scope.html">개발 범위 · 기술 GAP</a>
+  <a href="./issues.html">이슈 보드 · 결정 큐</a>
+  <a href="./docs.html">회의록 · 문서</a>
+</div></nav>
+
+<div class="wrap">
+
+<div class="eyebrow">SUPERSTORY · PLAYTOON · LE PETIT PRINCE — PROJECT HUB</div>
+<h1>기획</h1>
+<p class="sub">기획 산출물 서가 · 발행 파이프라인 &nbsp;|&nbsp; v0.4 기준 (2026. 8. 5) &nbsp;|&nbsp; 발행 시 이 페이지에 행 추가 — 최신 버전만 링크, 구버전은 보관</p>
+
+<section id="published">
+<h2>기획 산출물</h2>
+<p class="h2sub">발행 완료 — 링크는 최신 버전</p>
+<table>
+<tr><th style="width:60px">#</th><th style="width:300px">문서</th><th style="width:120px">버전 · 일자</th><th style="width:150px">소비팀</th><th>내용 · 개정 이력</th></tr>
+<tr>
+  <td>P-01</td>
+  <td><a href="./ia.html" style="color:var(--blue)">IA 스켈레톤 + 기술 요구사항</a> <span class="badge b-done">발행</span></td>
+  <td class="nw">v0.3 · 8/5</td>
+  <td>웹팀 · 웹 디자인</td>
+  <td>비주얼 사이트맵(5존·5로케일) · 접근 상태 매트릭스 · 핵심 플로우 5 · 기술 요구 1장 · 열린 결정 4(허브 큐 동기화). 웹팀 8/18 착수 입력물.<br><span style="color:var(--muted);font-size:12px">개정: v0.1 7/17 → 7/22 지갑·별 → v0.2 8/5 결제 2채널 → v0.3 8/5 브랜드 홈·보이스 플레이북 단권 모델·내 별 2모드·셀럽 별 방문 (구버전 보관)</span></td>
+</tr>
+</table>
+</section>
+
+<section id="pipeline">
+<h2>발행 예정 파이프라인</h2>
+<p class="h2sub">데드라인 순 — 각 산출물이 여는 결정·작업 명시</p>
+<table>
+<tr><th style="width:60px">#</th><th style="width:300px">문서</th><th style="width:120px">목표</th><th style="width:150px">소비팀</th><th>내용 · 연동</th></tr>
+<tr><td>P-02</td><td>ScreenSpec v0.1 (서재 우선) <span class="badge b-wait">예정</span></td><td class="nw">8/14</td><td>웹 디자인</td><td>랜딩(브랜드 홈)·별자리 서재(내 별 2모드: 펼쳐 읽기/읽어주기, 셀럽 별 방문)·상점. D10(별 페이징) 결정을 강제하는 장치 — 별자리 배치 원칙(실제 별자리=셀럽, 배경=회원) 포함</td></tr>
+<tr><td>P-03</td><td>상품·가격 정책 v0.1 <span class="badge b-wait">예정</span></td><td class="nw">8/14</td><td>웹팀 · PD</td><td>보이스 플레이북 단권 해금 + 청취 수집 연출 — 8/6 회의 "낭독 버전 교체 판매(기본→RM·로제)"로 재확인. 신규: <b>셀럽 도슨트 코멘터리</b>(본편 외 별도 상품) 편입 검토. 분기 시스템 미사용 확정 — "자기 행성" 게이미피케이션은 인터랙션 횟수 데이터 기반(웹 단+플레이북 데이터 연동). 셀럽 2티어(전권/문장 참여형·재능기부). D2·D3와 동시, P7 면제 조건 대조 필수</td></tr>
+<tr><td>P-04</td><td>유니티 기능 대체표 <span class="badge b-wait">예정</span></td><td class="nw">~8/18</td><td>플레이북디자인팀</td><td>동일/대체/포기/신규 커버 4분류 — 킥오프 브리프 포함, 기대 GAP 관리</td></tr>
+<tr><td>P-05</td><td>인터랙티브 10종 파라미터 설계 v0.1 <span class="badge b-wait">예정</span></td><td class="nw">8/21</td><td>플레이북엔진팀 · 플레이북디자인팀</td><td>조합 매핑(3^5→성향 3종)·연타 임계·게이지 수치·별자리 정답 쌍(씬당 10 이내). 8/6 합의 반영: A급 인터랙션 10개(미니게임·틀린그림찾기·블랙보드·멀티스텝) = 콘텐츠가 아닌 <b>기능 개발 일정</b>으로 산정, 챕터 경계 배치 · 마이크로 인터랙션 전 페이지 · 내레이션 논스톱 원칙</td></tr>
+<tr><td>P-06</td><td>별 생성 규칙 설계 v0.1 <span class="badge b-wait">예정</span></td><td class="nw">8/21</td><td>웹팀 · 플레이북엔진팀</td><td>선택·분기 결과 → 별 속성(형태·색·빛) 매핑 — "같은 문장, 다른 별". L3 계정 변수 저장 스키마 포함</td></tr>
+<tr><td>P-07</td><td>정렬 도구 검증 리포트 <span class="badge b-risk">위험 관리</span></td><td class="nw">8월 중순</td><td>플레이북엔진팀 · PD</td><td>나레이션 동기화 120분×4벌 파이프라인 판정 — 최상위 리스크 T1의 닫힘 문서</td></tr>
+</table>
+<div class="note"><b>운영 규칙</b> — 산출물 발행 시: ① 위 표에서 "기획 산출물"로 이동 + 링크 연결 ② 관련 결정(D#)·이슈(T/P/C#) 상태 갱신 ③ 보관 로그 기입. 모든 기획서는 v0.1 우선 공급 — 완성 대기 금지.</div>
+</section>
+
+<div style="margin-top:56px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between">
+  <span>슈퍼스토리 스토리테크본부 · 플레이툰 어린왕자 프로젝트 허브</span>
+  <span>관리: PD · 갱신 이력은 보관 로그에 기록</span>
+</div>
+
+</div>
+</body>
+</html>

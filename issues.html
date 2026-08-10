@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어린왕자 허브 — 이슈 보드 · 결정 큐</title>
+<style>
+:root{--bg:#0F1626;--panel:#151F36;--panel2:#111A2E;--line:#26314D;--ink:#E8E6DD;--muted:#8A93A8;--gold:#E9B84C;
+--teal:#35C79A;--teal-d:#1E8A69;--violet:#8B7FE8;--violet-d:#5D51C4;--violet-l:#3A3564;
+--rose:#E07A9E;--rose-d:#B04A70;--blue:#5B9FE3;--blue-d:#2F6DB4;--blue-l:#274668;--red:#E15B5B}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,"Malgun Gothic",sans-serif;line-height:1.6}
+nav{position:sticky;top:0;z-index:50;background:rgba(15,22,38,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 24px}
+nav .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:4px;height:54px;overflow-x:auto}
+nav .logo{font-family:"Noto Serif KR",serif;font-weight:600;font-size:15px;color:var(--gold);white-space:nowrap;margin-right:14px}
+nav a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 11px;border-radius:6px;white-space:nowrap}
+nav a:hover{color:var(--ink);background:var(--panel)}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 24px 80px}
+.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--gold);margin-bottom:10px}
+h1{font-family:"Noto Serif KR",serif;font-weight:600;font-size:30px}
+.sub{color:var(--muted);font-size:13.5px;margin-top:8px}
+section{margin-top:56px}
+h2{font-size:20px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+h2::before{content:"";width:5px;height:20px;background:var(--gold);border-radius:2px}
+.h2sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.kcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.kcard .k{font-size:11.5px;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.kcard .v{font-size:17px;font-weight:600}
+.kcard .v small{font-size:12px;color:var(--muted);font-weight:400}
+.kcard.warn{border-left:3px solid var(--red)}
+.kcard.goldb{border-left:3px solid var(--gold)}
+.badge{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:999px;letter-spacing:.04em}
+.b-risk{background:rgba(225,91,91,.15);color:var(--red)}
+.b-run{background:rgba(91,159,227,.15);color:var(--blue)}
+.b-wait{background:rgba(138,147,168,.16);color:var(--muted)}
+.b-done{background:rgba(53,199,154,.15);color:var(--teal)}
+.b-gate{background:rgba(233,184,76,.15);color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:12px;white-space:nowrap}
+td.nw{white-space:nowrap}
+tr:hover td{background:rgba(255,255,255,.015)}
+.j-impl{color:var(--teal);font-weight:600}.j-spec{color:var(--blue);font-weight:600}
+.j-none{color:var(--red);font-weight:600}.j-chk{color:var(--gold);font-weight:600}.j-uni{color:var(--violet);font-weight:600}
+/* 간트 */
+.gantt{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 22px 14px;margin-top:12px}
+.months{position:relative;height:16px;margin-left:126px;font-size:11px;color:var(--muted)}
+.months span{position:absolute}
+.chart{position:relative}
+.grid{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.grid i{position:absolute;top:0;bottom:0;border-left:1px solid var(--line)}
+.row{position:relative;height:30px;margin:5px 0}
+.row .lb{position:absolute;left:0;width:118px;font-size:11.5px;color:var(--muted);line-height:30px;white-space:nowrap}
+.row .lb.crit{color:var(--teal)}
+.row .tr{position:absolute;left:126px;right:0;top:4px;height:22px}
+.bar{position:absolute;height:22px;border-radius:5px;font-size:10.5px;line-height:22px;padding:0 7px;white-space:nowrap;overflow:hidden;color:#0D1322;font-weight:500}
+.bar.dk{color:#F0EFFA}
+.gates{position:absolute;left:126px;right:0;top:0;bottom:0;pointer-events:none}
+.gate{position:absolute;top:-4px;bottom:0;border-left:1px dashed rgba(233,184,76,.5)}
+.gate::before{content:"★";position:absolute;top:-13px;left:-5px;font-size:8px;color:var(--gold)}
+.legend{margin:10px 0 0 126px;font-size:11px;color:var(--muted)}
+.legend b{color:var(--gold);font-weight:500}
+/* 탭 */
+.tabs{display:flex;gap:6px;margin:14px 0 0;flex-wrap:wrap}
+.tabs button{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:8px 8px 0 0;font-size:13px;cursor:pointer;font-family:inherit}
+.tabs button.on{background:var(--panel2);color:var(--gold);border-bottom-color:var(--panel2);font-weight:600}
+.tabpane{display:none;background:var(--panel2);border:1px solid var(--line);border-radius:0 10px 10px 10px;padding:6px 18px 16px}
+.tabpane.on{display:block}
+/* 이슈 */
+.issues{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.icat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.icat h3{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--gold)}
+.iss{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.iss:last-child{border-bottom:none}
+.iss .t{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.iss .t b{font-weight:600}
+.iss .d{color:var(--muted);font-size:12.5px;margin-top:2px}
+.iss .meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+.lib a{color:var(--blue);text-decoration:none}
+.lib a:hover{text-decoration:underline}
+.lib td small{color:var(--muted)}
+.log li{list-style:none;font-size:13px;padding:6px 0 6px 18px;position:relative;border-bottom:1px dashed var(--line)}
+.log li::before{content:"";position:absolute;left:2px;top:14px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.log li span{color:var(--muted)}
+.note{margin-top:10px;padding:12px 16px;background:rgba(233,184,76,.06);border:1px dashed rgba(233,184,76,.35);border-radius:8px;font-size:12.5px;color:var(--muted)}
+.note b{color:var(--gold)}
+.org{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:22px 20px 18px;margin:12px 0 20px;text-align:center}
+.org-top{display:inline-block;background:var(--panel);border:1px solid var(--gold);border-radius:10px;padding:9px 30px;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.org-top b{display:block;color:var(--gold);font-size:15px;margin-top:2px;letter-spacing:0}
+.org-stem{width:1px;height:16px;background:var(--line);margin:0 auto}
+.org-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative;padding-top:16px}
+.org-row::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;border-top:1px solid var(--line)}
+.org-box{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--muted);border-radius:10px;padding:12px 8px;font-size:13.5px;font-weight:600;position:relative}
+.org-box::before{content:"";position:absolute;top:-16px;left:50%;width:1px;height:16px;background:var(--line)}
+.org-box small{display:block;font-weight:400;font-size:11px;color:var(--muted);margin:3px 0 7px}
+.org-box b{font-size:13px;color:var(--ink)}
+.org-box.crit{border-top-color:var(--teal)}.org-box.eng{border-top-color:var(--violet)}.org-box.des{border-top-color:var(--rose)}.org-box.web{border-top-color:var(--blue)}
+.org-cap{font-size:11.5px;color:var(--muted);margin-top:14px}
+.org-cap b{color:var(--gold)}
+@media(max-width:900px){.issues{grid-template-columns:1fr}.org-row{grid-template-columns:1fr 1fr}.org-row::before{left:25%;right:25%}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <span class="logo">🌙 어린왕자 허브</span>
+  <a href="./index.html">대시보드 · 일정</a>
+  <a href="./plan.html">기획</a>
+  <a href="./scope.html">개발 범위 · 기술 GAP</a>
+  <a href="./issues.html" style="color:var(--gold);background:var(--panel)">이슈 보드 · 결정 큐</a>
+  <a href="./docs.html">회의록 · 문서</a>
+</div></nav>
+
+<div class="wrap">
+
+<div class="eyebrow">SUPERSTORY · PLAYTOON · LE PETIT PRINCE — PROJECT HUB</div>
+<h1>이슈 보드 · 결정 큐</h1>
+<p class="sub">어린왕자 프로젝트 허브 · v0.4 기준 (2026. 8. 5) &nbsp;|&nbsp; 소유: PD &nbsp;|&nbsp; 엑셀(v0.2 xlsx)은 산정·판정 기입용 워킹 파일로 병행</p>
+
+<section id="issues">
+<h2>이슈 보드</h2>
+<p class="h2sub">카테고리 5 — 상태: <span class="badge b-risk">위험</span> <span class="badge b-run">진행</span> <span class="badge b-wait">대기</span> <span class="badge b-done">완료</span></p>
+<div class="issues">
+
+<div class="icat"><h3>⚙ 기술</h3>
+  <div class="iss"><div class="t"><b>T1 음성 정렬 도구 × 4개국어</b> <span class="badge b-risk">위험</span></div><div class="d">기본 서사가 AI 다언어 보이스 → 동기화 4벌. 자동화 실패 시 본조립에 공수 직가산</div><div class="meta">8월 초 합동 검증 · 플레이북엔진팀+기획</div></div>
+  <div class="iss"><div class="t"><b>T2 재생 구동 어댑터 (구 seek 입력 어댑터)</b> <span class="badge b-run">진행 — T9에 흡수</span></div><div class="d">evaluate(t)의 t 공급원을 스크롤 → 내부 재생 시계(트리거→정방향 자동 재생)로 분리하는 배관. 스크럽 아님 — 런타임 되감기 없음(물리 결론 정합). <b>T9 타임라인이 이 내부 시계의 구현체</b>라 별도 공수 아닌 동일 축. 시간 점프 리셋은 에디터 스크럽·GoToScene에만</div><div class="meta">T9와 통합 진행 · 플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T3 유니티 샘플 재구현 경로</b> <span class="badge b-wait">대기</span></div><div class="d">반분할 이동·배회 — 엔진 기능화 vs 커스텀 씬</div><div class="meta">8/28 게이트 · 플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T4 spine-ts 버전 확인 (2차 물리)</b> <span class="badge b-wait">대기</span></div><div class="d">4.2+면 머플러는 리깅 작업化 — 지금 확인 가능한 최저비용 액션</div><div class="meta">즉시 · 플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T5 뷰어↔웹 이벤트 브리지</b> <span class="badge b-wait">대기</span></div><div class="d">캡슐 터치·씬 도달·테마 완료 + <b>선택·분기·인터랙티브 결과 이벤트 스트림</b>(별 생성의 원천) + 소유권 주입 — L3 서버 동기화 스키마 포함</div><div class="meta">8월 초 합동 · 웹팀+플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T6 마스크 전환 · 렌더 성능</b> <span class="badge b-wait">대기</span></div><div class="d">디졸브 18회 일반화 + 수천 장미 실측 — 프리즈 전 완료</div><div class="meta">~10/19 · 플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T7 AI 레이어 분절 파이프라인</b> <span class="badge b-risk">위험</span></div><div class="d">에셋+프로토 8주→4주 압축의 단일 전제. 킥오프 첫 주(8/18~8/21) 대표 컷 분절 품질 검증 필수 — 미달 시 v0.3(8주) 복귀 = 런칭 마지노선 재근접. 검증 기준: 원화→파츠 분리 정밀도·리터치 공수·Spine 리깅 호환</div><div class="meta">8/21까지 검증 · 플레이북디자인팀+기획</div></div>
+  <div class="iss"><div class="t"><b>T8 에디터 착수 3조건 (8/6 합의)</b> <span class="badge b-risk">위험</span></div><div class="d">① 키감(이징 커브) 통일 — 유니티 1h = 메이커 3h 격차, <b>만두 데모 동일 세팅 재현 검증이 최우선 선행 과제(즉시 착수)</b> ② 다중 유닛·키 동시 뷰("한 번에 보는 키 수 = 생산성") ③ 버그 안정성(FGT 병행 + 제작 일정에 버그 버퍼). 미충족 시 플레이북디자인팀 "기간 약속 불가"</div><div class="meta">킥오프 전제 · 플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T9 타임라인 기능 설계</b> <span class="badge b-run">방향 확정</span></div><div class="d">유닛 클립 프리팹화·타 유닛 클립 참조(현 구조 갭)·재사용·자막/음성 싱크. 상태 머신(테이크/유닛/게임)·트리거·변수·AND 조건은 기구현 — 애니메이터·타임라인이 다음 단계</div><div class="meta">설계 착수 · 플레이북엔진팀</div></div>
+  <div class="iss"><div class="t"><b>T10 웹 V램 제약 · 로딩 전략</b> <span class="badge b-risk">위험</span></div><div class="d">웹 압축 텍스처 미지원 — 4096 한 장 ≈ 40MB. 기준선: 배경 2048 / 소품 512 / 4096 아틀라스 필수. 어린왕자 70p 산술 5~6GB(신데렐라 1GB 기준) → 테이크 단위 로드·로딩 전략 별도 과제. "바탕화면감" 비주얼 기준과 정면 충돌 — 줌인 한정 고해상·블러 커버로 절충</div><div class="meta">에셋 규격 = D13 · 플레이북엔진팀+플레이북디자인팀</div></div>
+</div>
+
+<div class="icat"><h3>💳 결제</h3>
+  <div class="iss"><div class="t"><b>P1 결제 계약 2건 — 국내 PG + Paddle</b> <span class="badge b-run">진행</span></div><div class="d">2026 채널 확정에 따라 계약은 딱 2건: 국내 PG(우대 수수료 협상) + Paddle(MoR, 글로벌 194국). Stripe 계약은 2027 빅 스위치로 이연. <b>신규 후보: 뉴플레이(8/4 미팅)</b> — 한국 MoR, 1.9~4.9% 슬라이딩, 연동 4~8시간, 타사 견적 하회 의사. Paddle 자리의 경쟁 후보로 실효 수수료(환전·정산 포함) 대조 — 회신 여유 10~11월이나 초기 파트너 혜택은 8~9월 초 한정. 개발은 샌드박스 선행</div><div class="meta">8월 중 완료 목표 · 기획</div></div>
+  <div class="iss"><div class="t"><b>P2 회원·결제 테넌트</b> <span class="badge b-wait">대기</span></div><div class="d">플랫폼웹 DB 공유 vs 독립 — PT캐시와 신규 PG 병존 여부 포함</div><div class="meta">8/7 · 기획+웹팀 리드</div></div>
+  <div class="iss"><div class="t"><b>P3 무료/유료 경계 · 가격 v0.1</b> <span class="badge b-wait">대기</span></div><div class="d">테마 1 무료 + 2~5 패스(유력) vs 전권 무료+캡슐 과금. 게스트 개방 여부 포함</div><div class="meta">8/7 · 기획</div></div>
+  <div class="iss"><div class="t"><b>P4 지역 결제수단 매트릭스</b> <span class="badge b-wait">대기</span></div><div class="d">2026은 Paddle이 로컬 수단 흡수(카카오페이 등 지원) — 별도 매트릭스 불요. 2027 H2 로컬 채널 개통(페이레터/Razer/dLocal) 시 재검토. 보유 자산 실측: 뉴플레이 64국 · 스테이지업 61국 · 합산 ~80국 (결제 전략 문서 §02)</div><div class="meta">2027 트랙으로 이연 · 기획</div></div>
+  <div class="iss"><div class="t"><b>P5 환불·미성년·국가별 세금</b> <span class="badge b-wait">대기</span></div><div class="d">디지털 재화 환불 정책 + EU 철회권 소멸 동의 플로우, 부가세·JCT·VAT 처리 — 폴리시 구간에서 (P8과 연동)</div><div class="meta">~11/6 · 기획+웹팀</div></div>
+  <div class="iss"><div class="t"><b>P7 선불업 — 단일 가맹점 면제 트랙 확정</b> <span class="badge b-done">결론</span></div><div class="d">어린왕자 캐시 = 슈퍼스토리 발행 · 어린왕자 웹 전용(한정 네트워크·자사 전용) → 개정 전금법상 "하나의 가맹점(사업주 동일)" 면제 성립. 금액 무관 구조 요건이라 규모 성장에도 유지. <b>면제 조건 관리 체계 필수</b>: ① 판매자 표기 = 슈퍼스토리 단일(셀럽·재단 제3자성 차단) ② 어린왕자 웹 외 사용처 추가 금지(추가 시 등록 전환 트리거) ③ 양도 불가 설계(정의 제외 유권해석 여지 — 법무 리서치 참고 항목). 잔여 의무: 통신판매업 신고, 청약철회·환불 규정, 캐시 약관(유효기간·잔액 환급), 개인정보처리방침 — 별도관리 의무는 없으나 환불·잔액 정책은 자율적으로 등록 사업자 수준 유지(IP 신뢰)</div><div class="meta">면제 조건 체크리스트 → 약관·상품 정책 내장 · 기획+법무</div></div>
+  <div class="iss"><div class="t"><b>P8 글로벌 판매 — 2단계 전략 확정 (2026 Paddle → 2027 빅 스위치)</b> <span class="badge b-done">결론 (7/21 갱신)</span></div><div class="d">결제 전략 문서(7/21)로 기존 "직접 체계·MoR 배제" 결론 대체. <b>2026 디지털 온리 = 국내 PG + Paddle(MoR) 2계약으로 194국</b> — 각국 세금 신고 제로·차지백 책임 이전(셀럽 보이스 고단가 리스크에 이중 유리)·런칭 전 연동 최소화. OSS·JCT 직접 등록은 불요로 전환. <b>2027 빅 스위치</b>(트리거: 월매출 $100~200k): 굿즈 Stripe 신설 + 디지털 Stripe Tax 이관 + EU OSS·영국 VAT 직접 등록을 한 프로젝트로 묶음. EU 철회 동의 UX 표준은 유지(Paddle 체크아웃 설정으로 이행). 근거: <a href="https://little-prince-payment.vercel.app/" target="_blank" style="color:var(--blue)">결제 전략 문서</a></div><div class="meta">결정 7/21 · 기획</div></div>
+  <div class="iss"><div class="t"><b>P9 지갑 — 크레딧(별) 지갑 전 구간 가동</b> <span class="badge b-done">결론 (7/21 갱신)</span></div><div class="d">크레딧(별) 지갑 = 전 구간 수수료 방어선: $1~3 소액 개별 결제는 정액 수수료($0.30~0.50) 탓에 실효 22~55% → <b>$10~30 번들 충전으로 6~10% 구간</b>으로 희석(결제 전략 §A-6). 국내 = 자사 발행 캐시(단일 가맹점 면제 트랙, P7 유지). 글로벌 = Paddle 체크아웃 위 크레딧 충전 — 법적 판매자가 Paddle이라 자사 스토어드밸류 규제 프레임과 별도(크레딧 상품의 Paddle 약관상 취급 확인 항목). 무상 포인트(보상 루프)는 별도 유지. 지갑 스키마 국가별 가용성 플래그 설계 유지. 2027 Stripe 이관 시 국가별 스토어드밸류 검토(일본 자가형 신고+공탁) 재부상 — D11</div><div class="meta">확정 — 이관 시 재검토는 D11 · 기획</div></div>
+  <div class="iss"><div class="t"><b>P6 스토어 정책 리스크</b> <span class="badge b-run">모니터링</span></div><div class="d">PWA 비앱스토어 전제 유지 — 앱 배포 요구가 생기면 BM 재검토 필요(30% 유입)</div><div class="meta">상시 · 기획</div></div>
+</div>
+
+<div class="icat"><h3>🇨🇳 중국 · 중화권</h3>
+  <div class="iss"><div class="t"><b>C1 GFW 도달성 실측</b> <span class="badge b-risk">위험</span></div><div class="d">"웹이면 접근 가능"은 가설 — 본토에서 도메인·CDN·폰트·소셜 SDK 도달성 실측 필요. 차단 시 중화권 전략 자체가 재편</div><div class="meta">8월 중 실측 · 웹팀+기획</div></div>
+  <div class="iss"><div class="t"><b>C2 ICP 비안 · 본토 상업 서비스</b> <span class="badge b-wait">대기</span></div><div class="d">비안 없이 본토 결제 서비스 불가 — 현실 타깃: 홍콩·대만·마카오·해외 화교권 우선, 본토는 현지 파트너 트랙으로 분리</div><div class="meta">전략 결정 9월 · 기획</div></div>
+  <div class="iss"><div class="t"><b>C3 중화권 결제</b> <span class="badge b-wait">대기</span></div><div class="d">Stripe의 UnionPay/Alipay/WeChat Pay 수용 범위 확인 — P4와 한 몸. <b>뉴플레이 중국 현지 결제 테스트 완료(8/4)</b> — 디지털 콘텐츠 문제없음 확인, 단 ICP 비안(C2)은 별개로 유지</div><div class="meta">8월 · 기획</div></div>
+  <div class="iss"><div class="t"><b>C4 로그인 수단</b> <span class="badge b-wait">대기</span></div><div class="d">구글·애플 본토 불가 — 이메일/전화 로그인 보강 여부 (IA /auth 확장)</div><div class="meta">C1 실측 후 · 웹팀</div></div>
+  <div class="iss"><div class="t"><b>C5 어린왕자 판권 중화권 범위</b> <span class="badge b-wait">대기</span></div><div class="d">라이선스 계약상 중화권 서비스 권리·조건 — 재단 확인</div><div class="meta">7~8월 · 기획</div></div>
+</div>
+
+<div class="icat"><h3>📜 IP · 재단</h3>
+  <div class="iss"><div class="t"><b>R1 아트 스타일 가이드 승인</b> <span class="badge b-run">진행</span></div><div class="d">7/31 발송 → 왕복 1~2주 — 아트 양산의 단일 게이트</div><div class="meta">7/31 발송 · 플레이북디자인팀+기획</div></div>
+  <div class="iss"><div class="t"><b>R2 격주 누적 승인 프로세스</b> <span class="badge b-wait">대기</span></div><div class="d">테마 단위 중간 산출물 격주 공유 합의 — 11월 최종 승인 리스크의 유일한 완화책</div><div class="meta">킥오프 시 합의 · 기획</div></div>
+  <div class="iss"><div class="t"><b>R3 표기 관리</b> <span class="badge b-done">규칙 확정</span></div><div class="d">IWC 20주년(30년은 오기) · NFT는 대외 "디지털 굿즈" 고정</div><div class="meta">상시 · 기획</div></div>
+  <div class="iss"><div class="t"><b>R4 원작 삽화 모사 회피 기준</b> <span class="badge b-run">진행</span></div><div class="d">스타일 가이드에 명문화 — 법무 리스크 예방</div><div class="meta">7/31 포함 · 플레이북디자인팀</div></div>
+</div>
+
+<div class="icat"><h3>🎤 셀럽</h3>
+  <div class="iss"><div class="t"><b>S1 블랙핑크 선행 트랙</b> <span class="badge b-run">진행</span></div><div class="d">로제·지수 우선 — 수익 셰어 구조(MG 회피)</div><div class="meta">협의 중 · 기획</div></div>
+  <div class="iss"><div class="t"><b>S2 BTS 문장 100선 협의</b> <span class="badge b-wait">대기</span></div><div class="d">1차 명대사 100문장 → 2차 전권 확장 — 투어 종료 후 녹음 윈도우</div><div class="meta">윈도우 미정 · 기획</div></div>
+  <div class="iss"><div class="t"><b>S3 수익 셰어 시뮬레이션</b> <span class="badge b-wait">대기</span></div><div class="d">웹 결제 4.5% 전제 마진 구조 — 가격 v0.1과 함께</div><div class="meta">8월 · 기획</div></div>
+  <div class="iss"><div class="t"><b>S4 녹음 스펙 확정</b> <span class="badge b-wait">대기</span></div><div class="d">문장 5~15초 × 100선, 숨소리 포함 진성 품질 기준 — 보이스 캡슐 상품성의 원천</div><div class="meta">계약과 동시 · 기획</div></div>
+</div>
+
+<div class="icat"><h3>🧭 운영 원칙</h3>
+  <div class="iss"><div class="t"><b>기대 관리 — 유니티 대체표</b></div><div class="d">동일/대체/포기/신규 커버 4분류 — 킥오프(8/3) 전 플레이북디자인팀과 합의. "이것도 안 돼요?"의 예방주사</div><div class="meta">~8/3 · 기획</div></div>
+  <div class="iss"><div class="t"><b>파일럿 공식화</b></div><div class="d">프로토 구간(8/3~9/25) = 메이커 V2 첫 실전 콘텐츠 — 도구+콘텐츠 동시 개발로 평가·보고</div><div class="meta">본부 공유 · 기획</div></div>
+  <div class="iss"><div class="t"><b>결정 큐 48시간 룰</b></div><div class="d">결정 보류가 기획 지연의 실체 — 슬랙 공개 큐, 미결 시 에스컬레이션</div><div class="meta">상시 · 기획</div></div>
+</div>
+
+</div>
+</section>
+
+<section id="decisions">
+<h2>결정 대기 큐</h2>
+<p class="h2sub">기한순 — 결정되면 로그로 이동</p>
+<table>
+<tr><th style="width:50px">#</th><th style="width:120px">기한</th><th style="width:280px">결정</th><th>선택지</th><th style="width:140px">주체</th></tr>
+<tr><td>D0</td><td class="nw">경과 (7/20)</td><td>일정 v0.3 확정</td><td>북디자인 상세 산정 — 러프안 8+9주의 검증 (스토리보드 기확정 절감 vs 어른 6인·인터랙티브 에셋 누락 대조)</td><td>플레이북디자인팀+기획</td></tr>
+<tr><td>D1</td><td class="nw">경과 (7/24)</td><td>플랫폼웹 이식 vs 포크</td><td>뷰어·계정·접근제어 3모듈 코드 감사 — 8월 일정 신뢰도 결정</td><td>웹팀 리드</td></tr>
+<tr><td>D2</td><td class="nw">8/14</td><td>게스트 테마 1 개방</td><td>개방(전환 극대화) vs 가입 후 무료(리드 확보)</td><td>기획</td></tr>
+<tr><td>D3</td><td class="nw">8/14</td><td>무료/유료 경계 · 가격 v0.1</td><td>테마 1 무료+2~5 패스(유력) vs 전권 무료+캡슐 과금</td><td>기획</td></tr>
+<tr><td>D4</td><td class="nw">8/14</td><td>도메인 · 테넌트</td><td>독립 도메인 vs playtoon 서브도메인 — 회원 DB 공유 여부. 지갑은 어린왕자 전용 캐시로 확정(단일 가맹점 면제 유지 조건)이므로 캐시 변수는 제거 — PT캐시와 반드시 분리</td><td>기획+웹팀 리드</td></tr>
+<tr><td>D5</td><td class="nw">8월 중순</td><td>나레이션 동기화 파이프라인</td><td>정렬 도구 자동화 성립 여부 — 실패 시 스코프·일정 재협상</td><td>플레이북엔진팀+기획</td></tr>
+<tr><td>D6</td><td class="nw">8/28</td><td>기술 GAP 판정 확정</td><td>23항목 4축 — 신규분 구현 목록·순서 (8/21 초안 선행)</td><td>플레이북엔진팀</td></tr>
+<tr><td>D7</td><td class="nw">8/28</td><td>유니티 샘플 재구현 경로</td><td>엔진 기능화(재사용 자산) vs 커스텀 씬(최소 공수)</td><td>플레이북엔진팀</td></tr>
+<tr><td>D8</td><td class="nw">8/28</td><td>2차 물리 경로</td><td>A: Spine 4.2 제약(리깅화) vs B: 자체 벌렛 — spine-ts 버전 확인 선행</td><td>플레이북엔진팀</td></tr>
+<tr><td>D9</td><td class="nw">9월</td><td>중화권 전략</td><td>본토 파트너 트랙 분리 vs 화교권 우선 — C1 실측 결과 기반</td><td>기획</td></tr>
+<tr><td>D10</td><td class="nw">8/14 (ScreenSpec)</td><td>별 꾸미기 페이징</td><td>v1.0 줌인+자동 개인화(배치 스키마 선설계) / v1.1 데코 에디터+아이템 상점(포인트 사용처) — 권고: 2단계</td><td>기획</td></tr>
+<tr><td>D11</td><td class="nw">런칭 후</td><td>글로벌 캐시 확장 순서</td><td>국가별 전환율·ARPU 데이터 기반 — 일본(자가형 신고) 유력 1순위</td><td>기획</td></tr>
+<tr><td>D12</td><td class="nw">킥오프 주간</td><td>A급 저작 UI 수준 · 공통 블록 범위</td><td>"유니티급 불요, 힘 조절"(개발 리드) vs "초반 토대 안 잡으면 계속 그렇게 간다"(엔진 개발자) — A급 인터랙션 10개는 콘텐츠가 아닌 기능 개발 일정으로 산정(8/6 합의)</td><td>PD+플레이북엔진팀</td></tr>
+<tr><td>D13</td><td class="nw">킥오프 전</td><td>최소 사양 · 텍스처 기준 확정</td><td>배경 2048 / 소품 512 / 아틀라스 기준선 제안됨(신데렐라 검증) — 최소 사양 확정은 사업 결정. T10 로딩 전략의 전제</td><td>PD</td></tr>
+</table>
+</section>
+
+<div style="margin-top:56px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between">
+  <span>슈퍼스토리 스토리테크본부 · 플레이툰 어린왕자 프로젝트 허브</span>
+  <span>관리: PD · 갱신 이력은 보관 로그에 기록</span>
+</div>
+
+</div>
+<script>
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.t).classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
