@@ -76,7 +76,7 @@ td b{color:var(--gold);font-weight:600}
 
 <div class="eyebrow">PLAYTOON · LE PETIT PRINCE · INFORMATION ARCHITECTURE</div>
 <h1>어린왕자 웹 — IA 스켈레톤 + 기술 요구사항 v0.3</h1>
-<p class="sub">v0.3 — 2026. 8. 5 · PD → 웹팀(정태호·이순형) &nbsp;|&nbsp; 웹팀 8/18 착수(일정 v0.4)의 선행 입력물 &nbsp;|&nbsp; ScreenSpec v0.1은 8/14 공급<br>개정 이력: v0.1 7/17 → 7/22 지갑·별 개인화 → v0.2 8/5 결제 2채널·별 데코 경로 → <b style="color:var(--gold)">v0.3 8/5 브랜드 홈 원칙·보이스 플레이북 단권 모델·내 별 2모드·셀럽 별 방문·별자리 배치 원칙</b></p>
+<p class="sub">v0.3 — 2026. 8. 5 · PD → 웹팀(정태호·이순형) &nbsp;|&nbsp; 웹팀 8/18 착수 입력물 (일정 v0.5) &nbsp;|&nbsp; ScreenSpec v0.1은 8/28 공급<br>개정 이력: v0.1 7/17 → 7/22 지갑·별 개인화 → v0.2 8/5 결제 2채널·별 데코 경로 → <b style="color:var(--gold)">v0.3 8/5 브랜드 홈 원칙·보이스 플레이북 단권 모델·내 별 2모드·셀럽 별 방문·별자리 배치 원칙</b></p>
 
 <div class="principle">
   <div style="font-weight:600;margin-bottom:10px;color:var(--gold)">구조 원칙 5</div>
@@ -87,7 +87,7 @@ td b{color:var(--gold);font-weight:600}
 <div>④ <b>상점은 맥락 진입</b> — 서재의 미해금 별·뷰어의 캡슐 터치에서 구매 시트가 뜨는 게 기본, 독립 상점은 보조.</div>
 </div>
 
-<h2>1. 사이트맵 · URL 구조 <small>도메인은 D4 결정(8/14)까지 미정 — 유력 후보 b612.studio, 경로만 확정</small></h2>
+<h2>1. 사이트맵 · URL 구조 <small>도메인은 D4 결정(8/28)까지 미정 — 유력 후보 b612.studio, 경로만 확정</small></h2>
 <div class="smap-root"><span class="chip"><code>/{lang}/</code>언어 프리픽스 5로케일 ko·en·ja·zh-Hans·zh-Hant — 미지정 시 감지 후 리다이렉트</span></div>
 <div class="smap-stem"></div>
 <div class="smap">
@@ -198,7 +198,7 @@ td b{color:var(--gold);font-weight:600}
   <tr><td>별자리 서재</td><td class="no">읽기 전용 데모 하늘</td><td class="ok">내 하늘 (빈 상태 연출)</td><td class="ok">내 하늘</td><td class="ok">내 하늘 + 셀럽 하늘</td></tr>
   <tr><td>진행 데이터</td><td>로컬 저장</td><td colspan="3" class="ok">서버 — 게스트 진행분은 가입 시 병합 승계</td></tr>
 </table>
-<p style="font-size:12.5px;color:var(--muted);margin-top:8px">※ 게스트에 테마 1 개방·무료/유료 경계는 <b style="color:var(--gold)">가격 정책 v0.1(8/14) 결정 사항</b> — IA는 양쪽 다 수용 가능한 구조로 설계 (잠금 지점만 이동).</p>
+<p style="font-size:12.5px;color:var(--muted);margin-top:8px">※ 게스트에 테마 1 개방·무료/유료 경계는 <b style="color:var(--gold)">가격 정책 v0.1(8/28) 결정 사항</b> — IA는 양쪽 다 수용 가능한 구조로 설계 (잠금 지점만 이동).</p>
 
 <h2>3. 핵심 플로우 5</h2>
 <div class="flow"><b>F1 첫 방문 → 전환</b> &nbsp;랜딩 데모(모자 당기기) → "계속 읽기" → 테마 1 감상 <span>(게스트 허용 시)</span> → 첫 보이스 캡슐 조우 → 가입 유도 <span>— 데모→본편 이음새가 서비스 첫인상의 전부</span></div>
@@ -249,15 +249,15 @@ td b{color:var(--gold);font-weight:600}
 <h2>5. 열린 결정 4 <small>허브 결정 큐와 번호 동기화 — IA는 양쪽 수용, 결정 시 잠금 지점만 이동</small></h2>
 <table>
   <tr><th style="width:60px">#</th><th style="width:260px">결정</th><th>선택지</th><th style="width:160px">기한 · 주체</th></tr>
-  <tr><td>D2</td><td>게스트에 테마 1 개방 여부</td><td>개방(전환 훅 극대화) vs 가입 후 무료(리드 확보)</td><td>8/14 · PD</td></tr>
-  <tr><td>D3</td><td>무료/유료 경계</td><td>테마 1 무료 + 2~5 패스 (유력) vs 전권 무료 + 캡슐만 과금</td><td>8/14 · PD (가격 v0.1)</td></tr>
-  <tr><td>D4</td><td>도메인 · 테넌트</td><td>후보: b612.studio(키링 URL 일치·즉시 확보) + 재단 승인 시 lepetitprince.app 이원 운영. 회원 DB 공유 여부 — 지갑은 어린왕자 전용 확정으로 캐시 변수 제거</td><td>8/14 · PD+웹팀</td></tr>
-  <tr><td>D10</td><td>별 공간 페이징</td><td>[제안] v1.0: 내 별 2모드+셀럽 별 방문+친구 별 공유 링크(읽기 전용) / v1.1: 데코 에디터·아이템 상점·이웃 별 탐험 / v1.2: 커뮤니티 상호작용 — 모더레이션 체계(5로케일) 전제로만</td><td>8/14 (ScreenSpec) · PD</td></tr>
+  <tr><td>D2</td><td>게스트에 테마 1 개방 여부</td><td>개방(전환 훅 극대화) vs 가입 후 무료(리드 확보)</td><td>8/28 · PD</td></tr>
+  <tr><td>D3</td><td>무료/유료 경계</td><td>테마 1 무료 + 2~5 패스 (유력) vs 전권 무료 + 캡슐만 과금</td><td>8/28 · PD (가격 v0.1)</td></tr>
+  <tr><td>D4</td><td>도메인 · 테넌트</td><td>후보: b612.studio(키링 URL 일치·즉시 확보) + 재단 승인 시 lepetitprince.app 이원 운영. 회원 DB 공유 여부 — 지갑은 어린왕자 전용 확정으로 캐시 변수 제거</td><td>8/28 · PD+웹팀</td></tr>
+  <tr><td>D10</td><td>별 공간 페이징</td><td>[제안] v1.0: 내 별 2모드+셀럽 별 방문+친구 별 공유 링크(읽기 전용) / v1.1: 데코 에디터·아이템 상점·이웃 별 탐험 / v1.2: 커뮤니티 상호작용 — 모더레이션 체계(5로케일) 전제로만</td><td>8/28 (ScreenSpec) · PD</td></tr>
 </table>
 
 <div class="pagefoot">
   <span>슈퍼스토리 스토리테크본부 · 플레이툰 어린왕자 프로젝트</span>
-  <span>IA v0.3 (8/5) — ScreenSpec v0.1(8/14)에서 화면 단위로 상세화</span>
+  <span>IA v0.3 (8/5) — ScreenSpec v0.1(8/28)에서 화면 단위로 상세화</span>
 </div>
 
 </div>
