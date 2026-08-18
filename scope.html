@@ -118,10 +118,11 @@ tr:hover td{background:rgba(255,255,255,.015)}
 
 <div class="eyebrow">SUPERSTORY · PLAYTOON · LE PETIT PRINCE — PROJECT HUB</div>
 <h1>개발 범위 · 기술 GAP</h1>
-<p class="sub">어린왕자 프로젝트 허브 · v0.5 기준 (2026. 8. 10) &nbsp;|&nbsp; 엑셀(v0.2 xlsx)은 산정·판정 기입용 워킹 파일로 병행</p>
+<p class="sub">어린왕자 프로젝트 허브 · v0.6 기준 (2026. 8. 18) &nbsp;|&nbsp; 엑셀(v0.2 xlsx)은 산정·판정 기입용 워킹 파일로 병행</p>
 
 <section id="scope">
 <h2>팀별 개발 범위</h2>
+<div style="background:rgba(227,194,122,.08);border:1px solid rgba(227,194,122,.35);border-radius:10px;padding:12px 16px;margin:10px 0 14px;font-size:13.5px;line-height:1.65"><b style="color:var(--gold)">웹 스코프 재정의 (8/14 TF → v0.6 확정)</b> — v1.0 웹은 <b>커머셜 원페이지(에어드롭형) + 뷰어 + 결제</b> 3축. 별자리 서재·별 데코·상점 확장·지갑·별 생성은 <b>v2 동결</b>(설계 자산 보존 — IA·ScreenSpec에 동일 표기). 웹 종료 ~11/20.</div>
 <p class="h2sub">상세·기입용은 엑셀 v0.2 (북디자인 "산정 포함" 열 · 플레이북 "판정" 열) — 여기는 열람용 요약</p>
 <div class="tabs">
   <button class="on" data-t="t-plan">기획 (8)</button>
@@ -139,7 +140,7 @@ tr:hover td{background:rgba(255,255,255,.015)}
 <tr><td>통합 마스터 기획 v1.0</td><td class="nw">7/24</td><td>스코프·정당성·수익화 레이어 — 전 문서 SSOT</td></tr>
 <tr><td>테마 스코프 검증</td><td class="nw">8/3</td><td>S0526으로 씬 브레이크다운 기확정 — 리소스 규모 검증·보이스 캡슐 삽입 지점·문장 100선 테마 매핑</td></tr>
 <tr><td>오디오 기획 (P-09)</td><td class="nw">8/10 · v0.1</td><td>사운드 디자인 리스트 — 3계층 재사용 아키텍처(유니크 ~131 SFX·45% 절감), BGM 10곡 스템, 성우 한 세트 정의(16역→겸장→배역 3안)·트랙 분리 원칙, 발주/견적 겸용 명세. 오디오 일정 1인 직렬 설계(준비→녹음→BGM·SFX 검수→믹스). 스토리 기획서 확정 시 v0.2 시방서화</td></tr>
-<tr><td>게이트 · 리스크 운영</td><td class="nw">8/18~</td><td>게이트 관리(10/16 스코프·11/9 프리즈·12/11 완료), 슬랙 결정 큐 48h, GAP 판정 주관(8/28), 정렬 도구 검증 주관(8월 말)</td></tr>
+<tr><td>게이트 · 리스크 운영</td><td class="nw">8/18~</td><td>게이트 관리(스코프 게이트 재산정 중 · 11/9 프리즈 · 완료 시나리오 11/6/11/20/12/4), 슬랙 결정 큐 48h, GAP 판정 주관(8/28), 정렬 도구 검증 주관(8월 말)</td></tr>
 <tr><td>인터랙티브 10종 파라미터 설계 v0.1</td><td class="nw">8/28</td><td>조합 매핑(3^5→성향 3종)·연타 임계·게이지 수치·별자리 정답 쌍(씬당 10 이내)</td></tr>
 <tr><td>별 생성 규칙 설계 v0.1</td><td class="nw">8/28</td><td>선택·분기·인터랙티브 결과 → 별 속성(형태·색·빛) 매핑 — "같은 문장, 다른 별". 저장 스키마는 L3 계정 변수 기반, 웹팀·플레이북엔진팀 공동 입력물</td></tr>
 <tr><td>상품 · 가격 정책</td><td class="nw">8/28</td><td>듀얼 오디오(기본: 성우+AI 4개국어 / 프리미엄: 셀럽 진성 5~15초×100선). 테마 패스·보이스 패스 가격 + 테넌트 → 컬렉션 구조</td></tr>
@@ -181,12 +182,12 @@ tr:hover td{background:rgba(255,255,255,.015)}
 <div class="tabpane" id="t-fe">
 <table>
 <tr><th style="width:230px">항목</th><th style="width:90px">분류</th><th>내용</th></tr>
-<tr><td>브랜드 랜딩 · PWA 셸</td><td><span class="j-none">신규</span></td><td>"모자를 당겨보세요" 플레이어블 히어로 · PWA 매니페스트·오프라인 셸 — 입력물: IA v0.1</td></tr>
-<tr><td>별자리 서재 UI</td><td><span class="j-none">신규</span></td><td>별 점등·별자리 연결·진행도·미리듣기·셀럽 하늘·공유 이미지 — 콘텐츠 I5-2와 동일 문법(onConnect) 시너지. <b>하늘 배치 원칙: 알려진 실제 별자리 = 셀럽 별(운영 콘텐츠), 배경의 무수한 별 = 회원 별</b> — 하늘 자체가 커뮤니티 지도</td></tr>
-<tr><td>상점 · 마이페이지</td><td><span class="j-none">신규</span></td><td>테마/보이스 패스 구매 UI, PG 위젯, 소장 목록 — 입력물: 가격 v0.1(8/7)</td></tr>
+<tr><td>커머셜 원페이지 (에어드롭형) · PWA 셸</td><td><span class="j-none">신규</span></td><td>"모자를 당겨보세요" 플레이어블 히어로 · PWA 매니페스트·오프라인 셸 — 입력물: IA v0.1</td></tr>
+<tr><td><s style="color:var(--muted)">별자리 서재 UI</s> <span class="badge b-wait">v2 동결</span></td><td><span class="j-none">신규</span></td><td>별 점등·별자리 연결·진행도·미리듣기·셀럽 하늘·공유 이미지 — 콘텐츠 I5-2와 동일 문법(onConnect) 시너지. <b>하늘 배치 원칙: 알려진 실제 별자리 = 셀럽 별(운영 콘텐츠), 배경의 무수한 별 = 회원 별</b> — 하늘 자체가 커뮤니티 지도</td></tr>
+<tr><td><s style="color:var(--muted)">상점 · 마이페이지</s> <span class="badge b-wait">v2 동결</span> — v1.0은 구매·주문내역 최소 화면</td><td><span class="j-none">신규</span></td><td>테마/보이스 패스 구매 UI, PG 위젯, 소장 목록 — 입력물: 가격 v0.1(8/7)</td></tr>
 <tr><td>뷰어 임베드 (프론트)</td><td><span class="j-impl">이식</span></td><td>플랫폼웹 뷰어 이식 + 스킨. 캡슐 재생 UI: 명대사 터치 → 턴테이블/셀럽 테마 전환(260703 확정 연출)</td></tr>
 <tr><td>다국어 UI</td><td><span class="j-none">신규</span></td><td>텍스트 5로케일: ko·en·ja·<b>zh-Hans(간체)·zh-Hant(번체)</b> — 음성 나레이션은 4벌(중국어 보통화 1벌 공용). 지역별 로그인·결제 노출 분기</td></tr>
-<tr><td>별 상세 (줌인) · 데코</td><td><span class="j-none">신규 — 2단계</span></td><td>v1.0: 별 줌인 + 선택 결과 자동 개인화 배치(스키마 선설계 필수). v1.1: 데코 에디터(수동 배치)+아이템 상점 — 포인트 사용처, D10 결정</td></tr>
+<tr><td><s style="color:var(--muted)">별 상세 (줌인) · 데코</s> <span class="badge b-wait">v2 동결</span></td><td><span class="j-none">신규 — 2단계</span></td><td>v1.0: 별 줌인 + 선택 결과 자동 개인화 배치(스키마 선설계 필수). v1.1: 데코 에디터(수동 배치)+아이템 상점 — 포인트 사용처, D10 결정</td></tr>
 </table>
 </div>
 
@@ -198,15 +199,15 @@ tr:hover td{background:rgba(255,255,255,.015)}
 <tr><td>결제 백엔드 (2채널)</td><td><span class="j-none">신규</span></td><td>2026 = 국내 PG + Paddle(MoR) — Paddle 체크아웃 연동·웹훅·크레딧(별) 지갑 충전/차감 원장. Stripe는 2027 빅 스위치 시 이관(월매출 $100~200k 트리거)</td></tr>
 <tr><td>상품 · 카탈로그</td><td><span class="j-none">신규</span></td><td>SKU=셀럽×문장×언어, 4계층(낱개/묶음/패스/컴플리트), 서재 진행도 API</td></tr>
 <tr><td>콘텐츠 전송</td><td><span class="j-none">신규</span></td><td>캡슐 최고 보호 등급(서명 URL·구간 스트리밍), 나레이션 120분×4개국어, 글로벌 CDN</td></tr>
-<tr><td>지갑 — 캐시 · 포인트</td><td><span class="j-none">신규 (또는 이식)</span></td><td>충전 캐시·적립 포인트·PG 혼합 결제·거래 원장. <b>단일 가맹점 면제 트랙 확정</b> — 어린왕자 웹 전용·양도 불가 설계, 면제 조건 체크를 약관·상품 정책에 내장. 향후 통합 캐시 전환(=등록 트랙) 대비 데이터 모델 분리 + <b>국가별 캐시 가용성 플래그 선설계(v1.0 한국만 ON)</b>. 포인트 = 무상·전 지역 공통, 별자리 컴플리트 보상 연결(수집→경제 루프)</td></tr>
-<tr><td>플레이 데이터 · 별 생성</td><td><span class="j-none">신규</span></td><td>선택·분기·인터랙티브 결과(양 조합 성향, 노을 횟수 등) 이벤트 수집 → 계정 저장 → 별 생성 규칙 적용 → 개인화된 별 속성. 기반 = 플레이북 L3 계정 변수 + 서버 fallback(스펙 확정). 서재 = 소유권+플레이 데이터 합성 뷰</td></tr>
+<tr><td><s style="color:var(--muted)">지갑 — 캐시 · 포인트</s> <span class="badge b-wait">v2 동결</span> — v1.0 단건 결제만</td><td><span class="j-none">신규 (또는 이식)</span></td><td>충전 캐시·적립 포인트·PG 혼합 결제·거래 원장. <b>단일 가맹점 면제 트랙 확정</b> — 어린왕자 웹 전용·양도 불가 설계, 면제 조건 체크를 약관·상품 정책에 내장. 향후 통합 캐시 전환(=등록 트랙) 대비 데이터 모델 분리 + <b>국가별 캐시 가용성 플래그 선설계(v1.0 한국만 ON)</b>. 포인트 = 무상·전 지역 공통, 별자리 컴플리트 보상 연결(수집→경제 루프)</td></tr>
+<tr><td>플레이 데이터 <s style="color:var(--muted)">· 별 생성</s> <span class="badge b-wait">별 생성 v2 동결</span></td><td><span class="j-none">신규</span></td><td>선택·분기·인터랙티브 결과(양 조합 성향, 노을 횟수 등) 이벤트 수집 → 계정 저장 → 별 생성 규칙 적용 → 개인화된 별 속성. 기반 = 플레이북 L3 계정 변수 + 서버 fallback(스펙 확정). 서재 = 소유권+플레이 데이터 합성 뷰</td></tr>
 </table>
 </div>
 </section>
 
 <section id="gap">
 <h2>기술 GAP 분석 <span class="badge b-gate">개정 3판</span></h2>
-<p class="h2sub">S0526 + 유니티 샘플(사양 확정) × 플레이북 통합 기획서 V0.5.2 실측 — 판정 확정은 8/28 게이트, 신규분 11/9 프리즈 전 완료(v0.5). 판정 기입은 엑셀에서.</p>
+<p class="h2sub">S0526 + 유니티 샘플(사양 확정) × 플레이북 통합 기획서 V0.5.2 실측 — 판정 확정은 8/28 게이트, 신규분 11/9 프리즈 전 완료(v0.6). 판정 기입은 엑셀에서.</p>
 <table>
 <tr><th style="width:36px">#</th><th style="width:200px">요구 기술</th><th style="width:104px">판정</th><th>근거 · 확인 포인트</th></tr>
 <tr><td>1~3</td><td>페이드·탭·씬전환·사운드·타이머</td><td><span class="j-impl">RC.0 구현</span></td><td>Color/Transform·Audio 트랙, onClick·onTimerEnd, GoToScene — I3-1·I5-1은 현 에디터로 조립 가능</td></tr>
