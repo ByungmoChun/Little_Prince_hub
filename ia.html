@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>어린왕자 웹 — IA 스켈레톤 + 기술 요구사항 v0.3</title>
+<title>어린왕자 웹 — IA 스켈레톤 + 기술 요구사항 v0.4</title>
 <style>
 :root{--bg:#0F1626;--panel:#151F36;--panel2:#111A2E;--line:#26314D;--ink:#E8E6DD;--muted:#8A93A8;--gold:#E9B84C;--teal:#35C79A;--blue:#5B9FE3;--rose:#E07A9E;--violet:#8B7FE8}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -75,20 +75,19 @@ td b{color:var(--gold);font-weight:600}
 <div class="wrap">
 
 <div class="eyebrow">PLAYTOON · LE PETIT PRINCE · INFORMATION ARCHITECTURE</div>
-<h1>어린왕자 웹 — IA 스켈레톤 + 기술 요구사항 v0.3</h1>
-<div style="background:rgba(227,194,122,.1);border:1px solid rgba(227,194,122,.4);border-radius:10px;padding:12px 16px;margin:12px 0;font-size:13.5px;line-height:1.65"><b>⚠ v1.0 스코프 재정의 (8/14 TF · 일정 v0.6)</b> — 본 IA 중 v1.0 구현 범위는 <b>원페이지(랜딩 대체) + /read 뷰어 + 결제·주문</b> 3축으로 축소. /library(별자리 서재)·별 데코·/me 확장·소셜 요소는 <b>v2 동결</b>(삭제 아님 — DLC·굿즈 시점 재개용 설계 자산으로 본 문서에 보존).</div>
-<p class="sub">v0.3 — 2026. 8. 5 · PD → 웹팀(정태호·이순형) &nbsp;|&nbsp; 웹팀 8/18 착수 입력물 (일정 v0.5) &nbsp;|&nbsp; ScreenSpec v0.1은 8/28 공급<br>개정 이력: v0.1 7/17 → 7/22 지갑·별 개인화 → v0.2 8/5 결제 2채널·별 데코 경로 → <b style="color:var(--gold)">v0.3 8/5 브랜드 홈 원칙·보이스 플레이북 단권 모델·내 별 2모드·셀럽 별 방문·별자리 배치 원칙</b></p>
+<h1>어린왕자 웹 — IA 스켈레톤 + 기술 요구사항 v0.4</h1>
+<div style="background:rgba(227,194,122,.1);border:1px solid rgba(227,194,122,.4);border-radius:10px;padding:12px 16px;margin:12px 0;font-size:13.5px;line-height:1.65"><b>v0.4 구조 안내</b> — 본문(§1~5) = <b>v1.0 현행 스코프만</b>(원페이지 + 뷰어 + 결제). 동결된 설계 자산(별자리 서재·별·캡슐 BM·지갑)은 <b>§6 v2 보관고</b>로 이동 — 삭제 아님, DLC·굿즈 시점 재개용. 웹팀은 본문만 보고 착수하면 된다.</div>
+<p class="sub">v0.4 — 2026. 8. 18 · 기획 → 웹팀(정태호·이순형)·웹 디자인 &nbsp;|&nbsp; 일정 v0.6.1 정합 &nbsp;|&nbsp; ScreenSpec v0.1(원페이지·뷰어·결제)은 8/28 공급 · P-02a 원페이지 레퍼런스 선행 참조<br>개정 이력: v0.1 7/17 → 7/22 지갑·별 개인화 → v0.2 8/5 결제 2채널·별 데코 경로 → <b style="color:var(--gold)">v0.3 8/5 브랜드 홈·보이스 단권·내 별 2모드 → <b>v0.4 8/18 커머셜 웹 축소 전면 반영</b>(본문/보관고 이원화 · 대외 시연 원칙 신설 · D4 닷컴 방침 · P-06 동결 정합)</b></p>
 
 <div class="principle">
-  <div style="font-weight:600;margin-bottom:10px;color:var(--gold)">구조 원칙 5</div>
-<div style="margin-bottom:8px">⓪ <b>브랜드 홈이 상위</b> — 어린왕자 홈 = 세계의 집. 어린왕자 플레이북(본편)·셀럽 보이스 플레이북·굿즈는 그 안에 진열되는 상품. 뷰어에 상점이 붙은 서비스가 아님. 홈 표현은 웹 기술이 담당, 플레이북 엔진은 책을 펼칠 때만.</div>
-<div style="margin-bottom:8px">① <b>입구가 곧 데모</b> — 랜딩은 브랜드 데스티네이션. 세계와 상품군이 보이고, "모자를 당겨보세요" 플레이어블이 훅 (정적 히어로 금지).</div>
-<div style="margin-bottom:8px">② <b>홈은 별자리 서재</b> — 단일 작품 서비스이므로 작품 페이지가 아닌 "내 하늘(수집 상태)"이 재방문의 중심.</div>
-<div style="margin-bottom:8px">③ <b>뷰어는 몰입 전용</b> — 풀스크린, GNB 없음, 나가기만 존재.</div>
-<div>④ <b>상점은 맥락 진입</b> — 서재의 미해금 별·뷰어의 캡슐 터치에서 구매 시트가 뜨는 게 기본, 독립 상점은 보조.</div>
+<b>구조 원칙 5 (v0.4)</b><br>
+⓪ <b>브랜드 홈이 상위</b> — 어린왕자 원페이지 = 세계의 집이자 유일한 매장. 본편(책)이 주인공, 향후 셀럽 보이스·굿즈는 그 안에 진열될 상품. 홈 표현은 웹 기술, 플레이북 엔진은 책을 펼칠 때만.<br>
+① <b>입구가 곧 데모</b> — 원페이지는 브랜드 데스티네이션. 로어 섹션에 플레이어블 데모 임베드("모자 당기기")가 훅 — 정적 히어로 금지. (P-02a §③)<br>
+② <b>대외 시연 자산</b> — 사업 본부장 요구(킥오프 38:19): 조기 가동해 블랙레이블·재단 미팅에서 "여기 다 적용된다"를 보여주는 영업 도구. 따라서 ⒜ 셀럽·확장 영역은 자리(레이아웃)만 선반영 ⒝ 비공개 프리뷰(스테이징) 가능 ⒞ 모바일 반응형 필수(40:41).<br>
+③ <b>뷰어는 몰입 전용</b> — 풀스크린, GNB 없음, 나가기만 존재.<br>
+④ <b>재방문 중심 = 이어보기</b> — v1.0의 리텐션 축은 뷰어 이어보기 + 읽어주기 모드. (구 원칙 "홈=별자리 서재"·"상점=맥락 진입"은 §6 보관)
 </div>
-
-<h2>1. 사이트맵 · URL 구조 <small>도메인은 D4 결정(8/28)까지 미정 — 유력 후보 b612.studio, 경로만 확정</small></h2>
+<h2>1. 사이트맵 · URL 구조 <small>도메인은 킥오프 방침 확정: <b>닷컴 선점 후 재단 통보</b> — 후보 조사 중(D4, 8/28), 경로만 확정</small></h2>
 <div class="smap-root"><span class="chip"><code>/{lang}/</code>언어 프리픽스 5로케일 ko·en·ja·zh-Hans·zh-Hant — 미지정 시 감지 후 리다이렉트</span></div>
 <div class="smap-stem"></div>
 <div class="smap">
@@ -98,16 +97,134 @@ td b{color:var(--gold);font-weight:600}
     <div class="node">
       <div class="p">/</div>
       <div class="nm">랜딩<span class="tag core">CORE</span></div>
-      <div class="dd">브랜드 홈 — 세계의 하늘(셀럽 별자리) + 상품군 진열 + 플레이어블 훅("모자 당기기"). 로그인 시 /library로</div>
+      <div class="dd">에어드롭형 커머셜 원페이지(P-02a 8단: 히어로·기념형 카운트다운·로어+데모 임베드·에디션·재단 신뢰·CTA·FAQ·푸터). <b>셀럽·확장 영역은 자리만 선반영</b>(원칙 ②) · 반응형 · 구매 섹션 내장(독립 /store 불요)</div>
     </div>
     <div class="node">
       <div class="p">/s/{sentence}</div>
       <div class="nm">문장 카드<span class="tag core">SSR</span></div>
-      <div class="dd">공유 랜딩 · 낭독 셀럽 토글 · 미리듣기 → 데모/가입 유도. 바이럴 루프(F4)의 착지점</div>
+      <div class="dd">공유 랜딩 · 문장 미리듣기 → 데모 → 책 구매 유도. 바이럴 루프(F4)의 착지점 (셀럽 토글은 v2 — §6)</div>
     </div>
   </div>
 
-  <div class="zone z-home">
+  <div class="zone z-read">
+    <h5><i></i>감상</h5>
+    <div class="node">
+      <div class="p">/read</div>
+      <div class="nm">뷰어 진입<span class="tag core">CORE</span></div>
+      <div class="dd">이어보기 리다이렉트. 풀스크린 몰입 전용 — GNB 없음</div>
+    </div>
+    <div class="node sub">
+      <div class="p">/read/t{1-5}</div>
+      <div class="nm">테마 단위 진입</div>
+      <div class="dd">S0526 테마 5개 = 콘텐츠 단위 = URL 단위 — 테마 순차 오픈(플랜 B)과 정합</div>
+    </div>
+  </div>
+
+  <div class="zone z-shop">
+    <h5><i></i>커머스</h5>
+    <div class="node">
+      <div class="p">/checkout</div>
+      <div class="nm">결제<span class="tag core">CORE</span></div>
+      <div class="dd">국내 PG + Paddle 오버레이(MoR·194국) · 직전 신뢰 레이어. 크레딧(별) 지갑은 v2 동결(§6) — v1.0은 단건 결제만</div>
+    </div>
+  </div>
+
+  <div class="zone z-sys">
+    <h5><i></i>계정 · 시스템</h5>
+    <div class="node">
+      <div class="p">/auth</div>
+      <div class="nm">로그인<span class="tag core">CORE</span></div>
+      <div class="dd">결제용 최소 계정(킥오프: "가입은 결제 때문") — 소셜 로그인, 지역별 노출 순서 분기</div>
+    </div>
+    <div class="node">
+      <div class="p">/me</div>
+      <div class="nm">마이페이지<span class="tag core">CORE</span></div>
+      <div class="dd">최소 화면 — 구매 내역 · 언어 · 계정 (소장 진열·확장은 v2 서재로)</div>
+    </div>
+    <div class="node">
+      <div class="p">/about · /legal</div>
+      <div class="nm">신뢰 레이어</div>
+      <div class="dd">재단 라이선스 · 약관 · 개인정보 — 푸터 상주</div>
+    </div>
+    <div class="node">
+      <div class="p">/k/{token}</div>
+      <div class="nm">NFC 딥링크<span class="tag opt">OPT · 예약</span></div>
+      <div class="dd">키링 태깅 → 원터치 플레이어. 런칭 후 트랙 — 네임스페이스만 예약</div>
+    </div>
+  </div>
+
+</div>
+<h2>2. 접근 상태 매트릭스 <small>접근 제어 = 코인게이트 판정 로직 확장 (웹 Back #2) — v1.0 단일 상품 기준 3열</small></h2>
+<table>
+<tr><th>영역</th><th>게스트</th><th>회원 (무료)</th><th>구매자 (책 1권)</th></tr>
+<tr><td>원페이지 · 데모</td><td>가능</td><td>가능</td><td>가능</td></tr>
+<tr><td>테마 1 감상</td><td>가능 (전환 훅 — D2)</td><td>가능</td><td>가능</td></tr>
+<tr><td>테마 2~5 감상</td><td>잠김 → 가입</td><td>잠김 → 구매</td><td>가능 (테마 순차 오픈 시 오픈분)</td></tr>
+<tr><td>읽어주기 모드</td><td>불가</td><td>불가</td><td>가능 — 보유 언어 낭독</td></tr>
+<tr><td>진행 데이터</td><td>로컬 저장</td><td colspan="2">서버 — 게스트 진행분은 가입 시 병합 승계 (L3 수집 스키마 포함)</td></tr>
+</table>
+<p style="font-size:12.5px;color:#8a93a6">※ 게스트 테마 1 개방·무료/유료 경계는 가격 정책 v0.1(8/28, D2·D3) 결정 — IA는 양쪽 수용, 잠금 지점만 이동. 셀럽 보이스·캡슐 열은 v2 재개 시 §6 구본 매트릭스 복원.</p>
+<h2>3. 핵심 플로우 4 <small>+ [v2] F3 — §6 보관</small></h2>
+<div class="flow"><b>F1 첫 방문 → 전환</b> &nbsp;원페이지(히어로→카운트다운→로어) → 데모 재생(모자 당기기) → "계속 읽기" → 테마 1 감상 <b>(게스트 허용 시 — D2)</b> → 잠금 조우 → 가입·구매 유도 <b>— 데모→본편 이음새가 첫인상의 전부</b></div>
+<div class="flow"><b>F2 구매 (핵심 BM = 책 1권)</b> &nbsp;에디션 섹션(구성물 카드: 본편·낭독·읽어주기) → 구매 CTA → /checkout(국내 PG/Paddle, 인라인·이탈 없음) → 즉시 /read 진입. <b>결제는 한 번, 단순하게</b> — 셀럽 단권·캡슐 BM은 v2(§6)</div>
+<div class="flow"><b>F4 공유 → 유입 (바이럴 루프)</b> &nbsp;공유 카드/링크 → /s/{sentence} 랜딩(미리듣기) → 데모 → 구매·가입 <b>— 이 경로만 SSR·OG 최적화 필수</b></div>
+<div class="flow"><b>F5 복귀 (리텐션)</b> &nbsp;재방문 → 원페이지 상태 전환("지금 읽을 수 있습니다") 또는 /read 이어보기 → <b>읽어주기 모드</b>(BGM + 낭독 자동 재생 — 매일 트는 라디오) · 테마 순차 오픈 알림 훅 <b>— 상세는 ScreenSpec</b></div>
+<div class="flow" style="opacity:.55"><b>[v2] F3 수집 완성</b> &nbsp;서재 → 별자리 → 캡슐 묶음 구매 → 연결 연출 — §6 보관</div>
+<h2>4. 기술 요구사항 <small>웹팀 7/27 착수용 — 1장 요약</small></h2>
+<div class="grid2">
+  <div class="card">
+    <h4>PWA · 라우팅</h4>
+    <ul>
+      <li><b>모바일 반응형 필수</b> <span>— 대외 시연 대응(킥오프 40:41, 원칙 ②)</span></li>
+      <li>PWA: 설치 배너 + 오프라인 셸 <span>(셸만 — 콘텐츠 오프라인 캐시는 스코프 외)</span></li>
+      <li>i18n: 경로 프리픽스 /{lang}/ 5로케일(간체·번체 분리) <span>— 음성은 4벌(보통화 공용), SEO·공유 링크 언어 보존</span></li>
+      <li>SSR 범위: /s/{sentence}·랜딩만 <span>— 나머지는 CSR(앱 성격)</span></li>
+      <li>/k/{token} 네임스페이스 예약 <span>— 라우터에 stub만</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>상태 · 데이터</h4>
+    <ul>
+      <li>게스트 진행+선택 데이터 로컬 저장 → 가입 시 병합 <span>— 별 속성 포함, F1 전환의 전제</span></li>
+      <li>소유권 판정: 테마 단위 기본, 문장 단위(SKU)는 스키마만 예약 <span>— 코인게이트 확장, 캐싱 필수. v1.0 SKU = 책 1권</span></li>
+      <li>이어보기: 테마·씬 좌표 서버 저장</li>
+      <li><b>플레이 선택 이벤트 수집 = v1.0 필수</b> <span>— L3 계정 변수·서버 fallback 기반. P-06(별 생성)은 v2 동결이나 수집 스키마는 P-05(9/4)로 흡수: 지금 쌓아야 v2 별 생성 재료가 존재. 서재 합성 뷰는 §6</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>결제 · 오디오</h4>
+    <ul>
+      <li>결제 2채널: 국내 PG + Paddle 오버레이 체크아웃 <span>— 결제 후 복귀 딥링크, F2 인라인 결제의 전제</span></li><li><s>크레딧(별) 지갑</s> <span>— v2 동결(§6). v1.0은 단건 결제만, 지갑 스키마는 자산 보존</span></li>
+      <li>오디오 보호 전송: 본편 낭독 <span>— 서명 URL·구간 스트리밍. 캡슐(셀럽 진성) 최고 등급 보호는 v2 §6</span></li>
+      <li>나레이션 120분 × 4개국어 구간 로딩</li>
+      <li>미리듣기: 초반 2~3초 별도 저용량 에셋 <span>— 원본 노출 없음</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>뷰어 통합</h4>
+    <ul>
+      <li>플레이북 출력물 임베드 인터페이스 <span>— 킥오프 주간(8/18~) 플레이북엔진팀 합동 점검</span></li>
+      <li>뷰어 → 웹 이벤트 브리지: 씬 도달·테마 완료·<b>선택/분기 결과(L3 수집)</b> <span>— 이어보기 좌표·구매 훅. 캡슐 터치·별 생성 트리거는 v2</span></li>
+      <li>웹 → 뷰어: 소유권 상태 주입 <span>(재생 가능 문장 목록)</span></li><li>읽어주기 모드 = 웹 스코프 <span>— 오디오 연속 재생+텍스트·삽화, 플레이북 엔진 불요. 뷰어와 일정 비블로킹</span></li>
+    </ul>
+  </div>
+</div>
+
+<h2>5. 열린 결정 4 <small>허브 결정 큐와 번호 동기화 — IA는 양쪽 수용, 결정 시 잠금 지점만 이동</small></h2>
+<table>
+  <tr><th style="width:60px">#</th><th style="width:260px">결정</th><th>선택지</th><th style="width:160px">기한 · 주체</th></tr>
+  <tr><td>D2</td><td>게스트에 테마 1 개방 여부</td><td>개방(전환 훅 극대화) vs 가입 후 무료(리드 확보)</td><td>8/28 · PD</td></tr>
+  <tr><td>D3</td><td>무료/유료 경계</td><td>테마 1 무료 + 2~5 패스 (유력) vs 전권 무료 + 캡슐만 과금</td><td>8/28 · PD (가격 v0.1)</td></tr>
+  <tr><td>D4</td><td>도메인 · 테넌트</td><td>킥오프 방침: <b>닷컴 선점 후 재단 통보</b> — .com 후보 조사·가용성 확인 중(b612 계열 등). 구 후보(b612.studio·.app 이원)는 참고로 격하</td><td>8/28 · PD+웹팀</td></tr>
+  <tr><td>D10 <span style="color:#8a93a6">(보류)</span></td><td>별 공간 페이징</td><td>[제안] v1.0: 내 별 2모드+셀럽 별 방문+친구 별 공유 링크(읽기 전용) / v1.1: 데코 에디터·아이템 상점·이웃 별 탐험 / v1.2: 커뮤니티 상호작용 — 모더레이션 체계(5로케일) 전제로만</td><td><s>8/28</s> v2 재개 시 · 기획</td></tr>
+</table>
+
+<h2>6. v2 보관고 <small>동결 설계 자산 — 삭제 아님, 서재·DLC·굿즈 재개 시 본문 복원</small></h2>
+<div class="principle" style="opacity:.8">
+<b>동결 사유</b> — 8/14 TF 커머셜 웹 축소 → v0.6 확정. 소비처(별자리 서재)가 동결되며 연쇄: D10(별 페이징)·P-06(별 생성 — 단 L3 수집 스키마는 P-05로 흡수 = 데이터는 v1.0부터 쌓임)·크레딧 지갑·캡슐 단권 BM. <b>재개 조건</b>: DLC·굿즈·셀럽 보이스 시점(내년) — 아래 구본이 그대로 출발점.
+</div>
+<div class="smap">
+<div class="zone z-home">
     <h5><i></i>홈 · 수집</h5>
     <div class="node">
       <div class="p">/library</div>
@@ -131,23 +248,7 @@ td b{color:var(--gold);font-weight:600}
     </div>
   </div>
 
-  <div class="zone z-read">
-    <h5><i></i>감상</h5>
-    <div class="node">
-      <div class="p">/read</div>
-      <div class="nm">뷰어 진입<span class="tag core">CORE</span></div>
-      <div class="dd">이어보기 리다이렉트. 풀스크린 몰입 전용 — GNB 없음</div>
-    </div>
-    <div class="node sub">
-      <div class="p">/read/t{1-5}</div>
-      <div class="nm">테마 단위 진입</div>
-      <div class="dd">S0526 테마 5개 = 콘텐츠 단위 = URL 단위 — 테마 순차 오픈(플랜 B)과 정합</div>
-    </div>
-  </div>
-
-  <div class="zone z-shop">
-    <h5><i></i>커머스</h5>
-    <div class="node">
+  <div class="node">
       <div class="p">/store</div>
       <div class="nm">상점<span class="tag core">CORE</span></div>
       <div class="dd">테마 패스 · <b>셀럽 보이스 플레이북(단권 해금)</b> · 디지털 굿즈(v1.1 데코 아이템). 문장 낱개 판매 없음 — 수집은 청취 연출로</div>
@@ -157,108 +258,11 @@ td b{color:var(--gold);font-weight:600}
       <div class="nm">보이스 플레이북 상세</div>
       <div class="dd">셀럽 별 방문과 동일 대상의 목록형 뷰 — SEO·직링크·비교용</div>
     </div>
-    <div class="node">
-      <div class="p">/checkout</div>
-      <div class="nm">결제<span class="tag core">CORE</span></div>
-      <div class="dd">국내 PG + Paddle 오버레이(MoR·194국) · 크레딧(별) 병용 · 직전 신뢰 레이어</div>
     </div>
-  </div>
-
-  <div class="zone z-sys">
-    <h5><i></i>계정 · 시스템</h5>
-    <div class="node">
-      <div class="p">/auth</div>
-      <div class="nm">로그인<span class="tag core">CORE</span></div>
-      <div class="dd">소셜 4종 — 지역별 노출 순서 분기</div>
-    </div>
-    <div class="node">
-      <div class="p">/me</div>
-      <div class="nm">마이페이지<span class="tag core">CORE</span></div>
-      <div class="dd">소장 목록 · 구매 내역 · 언어 · 계정</div>
-    </div>
-    <div class="node">
-      <div class="p">/about · /legal</div>
-      <div class="nm">신뢰 레이어</div>
-      <div class="dd">재단 라이선스 · 약관 · 개인정보 — 푸터 상주</div>
-    </div>
-    <div class="node">
-      <div class="p">/k/{token}</div>
-      <div class="nm">NFC 딥링크<span class="tag opt">OPT · 예약</span></div>
-      <div class="dd">키링 태깅 → 원터치 플레이어. 런칭 후 트랙 — 네임스페이스만 예약</div>
-    </div>
-  </div>
-
-</div>
-<h2>2. 접근 상태 매트릭스 <small>접근 제어 = 코인게이트 판정 로직 확장 (웹 Back #2)</small></h2>
-<table>
-  <tr><th style="width:210px">영역</th><th>게스트</th><th>회원 (무료)</th><th>테마 패스</th><th>보이스 플레이북 (셀럽별 단권)</th></tr>
-  <tr><td>랜딩 데모</td><td class="ok">가능</td><td class="ok">가능</td><td class="ok">가능</td><td class="ok">가능</td></tr>
-  <tr><td>테마 1 감상</td><td class="ok">가능 (전환 훅)</td><td class="ok">가능</td><td class="ok">가능</td><td class="ok">가능</td></tr>
-  <tr><td>테마 2~5 감상</td><td class="no">잠김 → 가입</td><td class="pay">잠김 → 구매</td><td class="ok">가능</td><td>테마 패스 기준</td></tr>
-  <tr><td>보이스 캡슐 재생</td><td class="no">미리듣기만</td><td class="pay">미리듣기 + 단권 구매</td><td class="pay">미리듣기 + 단권 구매</td><td class="ok">전 문장 해금 — 청취마다 별 점등(수집 연출)</td></tr>
-  <tr><td>별자리 서재</td><td class="no">읽기 전용 데모 하늘</td><td class="ok">내 하늘 (빈 상태 연출)</td><td class="ok">내 하늘</td><td class="ok">내 하늘 + 셀럽 하늘</td></tr>
-  <tr><td>진행 데이터</td><td>로컬 저장</td><td colspan="3" class="ok">서버 — 게스트 진행분은 가입 시 병합 승계</td></tr>
-</table>
-<p style="font-size:12.5px;color:var(--muted);margin-top:8px">※ 게스트에 테마 1 개방·무료/유료 경계는 <b style="color:var(--gold)">가격 정책 v0.1(8/28) 결정 사항</b> — IA는 양쪽 다 수용 가능한 구조로 설계 (잠금 지점만 이동).</p>
-
-<h2>3. 핵심 플로우 5</h2>
-<div class="flow"><b>F1 첫 방문 → 전환</b> &nbsp;랜딩 데모(모자 당기기) → "계속 읽기" → 테마 1 감상 <span>(게스트 허용 시)</span> → 첫 보이스 캡슐 조우 → 가입 유도 <span>— 데모→본편 이음새가 서비스 첫인상의 전부</span></div>
-<div class="flow"><b>F2 보이스 플레이북 구매 (핵심 BM)</b> &nbsp;뷰어 명대사 터치 or 셀럽 별 방문 → 턴테이블 UI + 미리듣기(각인) → <b>단권 해금</b> 인라인 시트(이탈 없음) → 크레딧(별) 차감 또는 국내 PG/Paddle → 즉시 재생. 이후 문장을 들을 때마다 별 점등 — 결제는 한 번, 별자리 완성의 재미는 지속 <span>— 수집 = 연출, 과금 = 단순</span></div>
-<div class="flow"><b>F3 수집 완성</b> &nbsp;서재 → 미완성 별자리 확인 → 미해금 별 미리듣기 → 잔여 문장 묶음 구매 → 별자리 연결 연출 + 공유 카드 생성</div>
-<div class="flow"><b>F4 공유 → 유입 (바이럴 루프)</b> &nbsp;공유 카드/링크 → /s/{sentence} 랜딩(미리듣기) → 데모 → 가입 <span>— 이 경로만 SSR·OG 최적화 필수</span></div>
-<div class="flow"><b>F5 복귀 (리텐션)</b> &nbsp;재방문 → /library 내 하늘 → 이어보기 · <b>내 별 읽어주기 모드</b>(BGM + 셀럽 낭독 자동 재생 — 매일 트는 라디오) · "여우의 시간" 훅 <span>— 상세는 ScreenSpec에서</span></div>
-
-<h2>4. 기술 요구사항 <small>웹팀 7/27 착수용 — 1장 요약</small></h2>
-<div class="grid2">
-  <div class="card">
-    <h4>PWA · 라우팅</h4>
-    <ul>
-      <li>PWA: 설치 배너 + 오프라인 셸 <span>(셸만 — 콘텐츠 오프라인 캐시는 스코프 외)</span></li>
-      <li>i18n: 경로 프리픽스 /{lang}/ 5로케일(간체·번체 분리) <span>— 음성은 4벌(보통화 공용), SEO·공유 링크 언어 보존</span></li>
-      <li>SSR 범위: /s/{sentence}·랜딩만 <span>— 나머지는 CSR(앱 성격)</span></li>
-      <li>/k/{token} 네임스페이스 예약 <span>— 라우터에 stub만</span></li>
-    </ul>
-  </div>
-  <div class="card">
-    <h4>상태 · 데이터</h4>
-    <ul>
-      <li>게스트 진행+선택 데이터 로컬 저장 → 가입 시 병합 <span>— 별 속성 포함, F1 전환의 전제</span></li>
-      <li>소유권 판정: 테마 단위 + 문장 단위(SKU) 이중 <span>— 코인게이트 확장, 캐싱 필수</span></li>
-      <li>이어보기: 테마·씬 좌표 서버 저장</li>
-      <li>서재 = 소유권 + 플레이 데이터 합성 뷰 <span>— 선택·분기 결과가 별 속성 생성(개인화)</span></li><li>플레이 선택 이벤트 계정 저장 <span>— L3 계정 변수·서버 fallback(스펙 확정) 기반</span></li>
-    </ul>
-  </div>
-  <div class="card">
-    <h4>결제 · 오디오</h4>
-    <ul>
-      <li>결제 2채널: 국내 PG + Paddle 오버레이 체크아웃 <span>— 결제 후 복귀 딥링크, F2 인라인 시트의 전제</span></li><li>크레딧(별) 지갑: 국내 자사 캐시(단일 가맹점 면제 트랙) + 글로벌 Paddle 번들 충전 <span>— 국가별 가용성 플래그(v1.0 한국만 ON), 무상 포인트는 전 지역 공통</span></li>
-      <li>오디오 보호 전송: 캡슐(셀럽 진성) 최고 등급 <span>— 서명 URL·구간 스트리밍</span></li>
-      <li>나레이션 120분 × 4개국어 구간 로딩</li>
-      <li>미리듣기: 초반 2~3초 별도 저용량 에셋 <span>— 원본 노출 없음</span></li>
-    </ul>
-  </div>
-  <div class="card">
-    <h4>뷰어 통합</h4>
-    <ul>
-      <li>플레이북 출력물 임베드 인터페이스 <span>— 킥오프 주간(8/18~) 플레이북엔진팀 합동 점검</span></li>
-      <li>뷰어 → 웹 이벤트 브리지: 캡슐 터치·씬 도달·테마 완료·<b>선택/분기 결과</b> <span>— 구매 시트·서재 갱신·별 생성 트리거</span></li>
-      <li>웹 → 뷰어: 소유권 상태 주입 <span>(재생 가능 문장 목록)</span></li><li>읽어주기 모드 = 웹 스코프 <span>— 오디오 연속 재생+텍스트·삽화, 플레이북 엔진 불요. 뷰어와 일정 비블로킹</span></li>
-    </ul>
-  </div>
-</div>
-
-<h2>5. 열린 결정 4 <small>허브 결정 큐와 번호 동기화 — IA는 양쪽 수용, 결정 시 잠금 지점만 이동</small></h2>
-<table>
-  <tr><th style="width:60px">#</th><th style="width:260px">결정</th><th>선택지</th><th style="width:160px">기한 · 주체</th></tr>
-  <tr><td>D2</td><td>게스트에 테마 1 개방 여부</td><td>개방(전환 훅 극대화) vs 가입 후 무료(리드 확보)</td><td>8/28 · PD</td></tr>
-  <tr><td>D3</td><td>무료/유료 경계</td><td>테마 1 무료 + 2~5 패스 (유력) vs 전권 무료 + 캡슐만 과금</td><td>8/28 · PD (가격 v0.1)</td></tr>
-  <tr><td>D4</td><td>도메인 · 테넌트</td><td>후보: b612.studio(키링 URL 일치·즉시 확보) + 재단 승인 시 lepetitprince.app 이원 운영. 회원 DB 공유 여부 — 지갑은 어린왕자 전용 확정으로 캐시 변수 제거</td><td>8/28 · PD+웹팀</td></tr>
-  <tr><td>D10</td><td>별 공간 페이징</td><td>[제안] v1.0: 내 별 2모드+셀럽 별 방문+친구 별 공유 링크(읽기 전용) / v1.1: 데코 에디터·아이템 상점·이웃 별 탐험 / v1.2: 커뮤니티 상호작용 — 모더레이션 체계(5로케일) 전제로만</td><td>8/28 (ScreenSpec) · PD</td></tr>
-</table>
-
+<div class="flow" style="opacity:.7"><b>[구본] 원칙 ② 홈은 별자리 서재</b> — "내 하늘(수집 상태)"이 재방문의 중심 · <b>원칙 ④ 상점은 맥락 진입</b> — 미해금 별·캡슐 터치에서 구매 시트 · <b>F2(구) 캡슐 단권 해금 BM</b> — 턴테이블 UI·별 점등 수집 연출 · <b>F3 수집 완성</b> — 별자리 연결·공유 카드 · <b>지갑</b> — 자사 캐시+Paddle 번들 · <b>배치 원칙</b> — 실제 별자리=셀럽 별, 배경=회원 별</div>
 <div class="pagefoot">
   <span>슈퍼스토리 스토리테크본부 · 플레이툰 어린왕자 프로젝트</span>
-  <span>IA v0.3 (8/5) — ScreenSpec v0.1(8/28)에서 화면 단위로 상세화</span>
+  <span>IA v0.4 (8/18) — 본문 v1.0 / §6 v2 보관고 · ScreenSpec v0.1(원페이지·뷰어·결제, 8/28)에서 화면 단위로 상세화</span>
 </div>
 
 </div>
