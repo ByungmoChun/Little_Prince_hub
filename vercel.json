@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/어린왕자_프로젝트_허브.html", "destination": "/index.html", "permanent": false },
+    { "source": "/어린왕자_허브_기획.html", "destination": "/plan.html", "permanent": false },
+    { "source": "/어린왕자_허브_개발범위.html", "destination": "/scope.html", "permanent": false },
+    { "source": "/어린왕자_허브_이슈결정.html", "destination": "/issues.html", "permanent": false },
+    { "source": "/어린왕자_허브_문서.html", "destination": "/docs.html", "permanent": false }
+  ]
+}
